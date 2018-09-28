@@ -1,0 +1,1053 @@
+﻿@model ASPNETCORERoleManagement.Models.Personal
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h4>Editar <small>Personal</small></h4>
+
+<hr />
+<div class="row">
+    <div >
+        <form asp-action="Edit">
+
+
+            <div class="col-sm-4 ">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Datos Generales</div>
+                    <div class="panel-body">
+
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="row">
+                            <div class="form-group col-sm-4">
+                                <label asp-for="Gbukrs" class="control-label"></label>
+                                <input asp-for="Gbukrs" class="form-control" value="@ViewBag.GpoCiaG" readonly />
+                                <span asp-validation-for="Gbukrs" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label asp-for="Bukrs" class="control-label"></label>
+                                <input asp-for="Bukrs" class="form-control" readonly />
+                                <span asp-validation-for="Bukrs" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label asp-for="Pernr" class="control-label"></label>
+                                <input asp-for="Pernr" class="form-control" readonly />
+                                <span asp-validation-for="Pernr" class="text-danger"></span>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label asp-for="BegDa" class="control-label"></label>
+                                <input asp-for="BegDa" class="form-control" readonly />
+                                <span asp-validation-for="BegDa" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label asp-for="EndDa" class="control-label"></label>
+                                <input asp-for="EndDa" class="form-control" readonly />
+                                <span asp-validation-for="EndDa" class="text-danger"></span>
+                            </div>
+
+                        </div>
+                        <div class="form-group col-sm-8">
+                            <label asp-for="Seqnr" class="control-label"></label>
+                            <input asp-for="Seqnr" class="form-control" readonly />
+                            <span asp-validation-for="Seqnr" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-sm-3">
+                            <label asp-for="Subty" class="control-label"></label>
+                            <input asp-for="Subty" class="form-control" readonly />
+                            <span asp-validation-for="Subty" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group col-sm-7">
+                            <label asp-for="Vorna" class="control-label"></label>
+                            <input asp-for="Vorna" class="form-control" readonly />
+                            <span asp-validation-for="Vorna" class="text-danger"></span>
+                        </div>
+                        <div class="row">
+
+                            <div class="form-group col-sm-6">
+                                <label asp-for="Nachn" class="control-label"></label>
+                                <input asp-for="Nachn" class="form-control" readonly />
+                                <span asp-validation-for="Nachn" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label asp-for="Nach2" class="control-label"></label>
+                                <input asp-for="Nach2" class="form-control" readonly />
+                                <span asp-validation-for="Nach2" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="col-sm-4 ">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Clase de Medida   @Html.ActionLink("   Nuevo", "Crear", "IT0_1", new
+                {
+                    IdPer = Model.Id
+                }, null)
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.BegDa)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.EndDa)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT0s[0].Estatus)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT0s[0].Massg)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT0s[0].Massn)
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.IT0s)
+
+                            {
+
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.BegDa)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.EndDa)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Estatus)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Massg)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Massn)
+                                    </td>
+                                    <td>
+
+
+
+                                        <!-- <a asp-page="Edit" asp-route-id="@item.Id">Edit</a> -->
+                                        <!--<a asp-page="Details" asp-route-id="@item.Id">Details</a> -->
+                                        <!--<a asp-page="Delete" asp-route-id="@item.Id">Delete</a>-->
+                                    </td>
+                                </tr>
+
+
+
+                    }
+                                </tbody>
+                            </table>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+            <div class="col-sm-4 ">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        IT1   @Html.ActionLink("   Nuevo", "Crear", "IT1", new
+                {
+                    IdPer = Model.Id
+                }, null)
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.BegDa)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.EndDa)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT1s[0].Divi)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT1s[0].Subdivis)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT1s[0].Tipo_pers)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT1s[0].Area_pers)
+                                        </th>
+                                        
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT1s[0].Nomina)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT1s[0].Cent_cost)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT1s[0].Orgeh)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT1s[0].Plans)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT1s[0].Stell)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT1s[0].Subty)
+
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+
+                                    @foreach (var item in Model.IT1s)
+
+                            {
+
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.BegDa)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.EndDa)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Divi)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Subdivis)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Tipo_pers)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Area_pers)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Nomina)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Cent_cost)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Orgeh)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Plans)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Stell)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Subty)
+                                        </td>
+
+                                    </tr>
+
+                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="col-sm-4 ">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Clase de Contrato  @Html.ActionLink("   Nuevo", "Crear", "IT16", new
+                {
+                    IdPer = Model.Id
+                }, null)
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.BegDa)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.EndDa)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT16s[0].Cttyp)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT16s[0].Prbzt)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT16s[0].Prbeh)
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.IT16s)
+
+                            {
+
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.BegDa)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.EndDa)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Cttyp)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Prbzt)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Prbeh)
+                                    </td>
+                                    <td></td>
+                                </tr>
+
+
+
+                    }
+                                </tbody>
+                            </table>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-sm-4 ">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Clase de Fecha  @Html.ActionLink("   Nuevo", "Crear", "IT41", new
+                {
+                    IdPer = Model.Id
+                }, null)
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.BegDa)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.EndDa)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT41s[0].Dar01)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT41s[0].Dat01)
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.IT41s)
+
+                            {
+
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.BegDa)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.EndDa)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Dar01)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Dat01)
+                                    </td>
+                                </tr>
+
+
+
+                    }
+                                </tbody>
+                            </table>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col-sm-12 ">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Datos Generales  @Html.ActionLink("   Nuevo", "Crear", "IT2_185_105", new
+                {
+                    IdPer = Model.Id
+                }, null)
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.BegDa)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.EndDa)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT2_185_105s[0].Title)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT2_185_105s[0].Titl2)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT2_185_105s[0].Curp)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT2_185_105s[0].Gesch)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT2_185_105s[0].GbDat)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT2_185_105s[0].Gblnd)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT2_185_105s[0].Gbdep)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT2_185_105s[0].Gbort)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT2_185_105s[0].Natio)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT2_185_105s[0].Usrty1)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT2_185_105s[0].Usrid1)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT2_185_105s[0].Usrty2)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT2_185_105s[0].Usrid2)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT2_185_105s[0].Usrty3)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT2_185_105s[0].Usrid3)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT2_185_105s[0].Usrty4)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT2_185_105s[0].Usrid4)
+                                        </th>
+                                        
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT2_185_105s[0].Ine)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT2_185_105s[0].Rfc)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT2_185_105s[0].Licencia)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT2_185_105s[0].Cartilla)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT2_185_105s[0].Pasaporte)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT2_185_105s[0].Fm2)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT2_185_105s[0].Fm3)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT2_185_105s[0].Issste)
+                                        </th>
+
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT2_185_105s[0].Afore)
+                                        </th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.IT2_185_105s)
+
+                            {
+
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.BegDa)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.EndDa)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Title)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Titl2)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Curp)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Gesch)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.GbDat)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Gblnd)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Gbdep)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Gbort)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Natio)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Usrty1)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Usrid1)
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Usrty2)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Usrid2)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Usrty3)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Usrid3)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Usrty4)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Usrid4)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Ine)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Rfc)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Licencia)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Cartilla)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Pasaporte)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Fm2)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Fm3)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Issste)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Afore)
+                                        </td>
+
+                                    </tr>
+
+
+
+                    }
+                                </tbody>
+                            </table>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="col-sm-4 ">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        IT369  @Html.ActionLink("   Nuevo", "Crear", "IT369", new
+                {
+                    IdPer = Model.Id
+                }, null)
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.BegDa)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.EndDa)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT369x[0].Ijred)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT369x[0].Nimss)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT369x[0].Rimss)
+                                        </th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.IT369x)
+
+                            {
+
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.BegDa)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.EndDa)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Ijred)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Nimss)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Rimss)
+                                    </td>
+
+                                </tr>
+
+
+
+                    }
+                                </tbody>
+                            </table>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+            <div class="col-sm-4 ">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        IT6  @Html.ActionLink("   Nuevo", "Crear", "IT6", new
+                {
+                    IdPer = Model.Id
+                }, null)
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.BegDa)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.EndDa)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT6s[0].Cod_post)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT6s[0].Colonia)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT6s[0].Estado)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT6s[0].Land1)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT6s[0].Munic)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT6s[0].Poblac)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT6s[0].Stras)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT6s[0].Telnr)
+                                        </th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.IT6s)
+
+                            {
+
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.BegDa)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.EndDa)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Cod_post)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Colonia)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Estado)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Land1)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Munic)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Poblac)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Stras)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Telnr)
+                                    </td>
+
+                                </tr>
+
+
+
+                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-sm-4 ">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        IT7  @Html.ActionLink("   Nuevo", "Crear", "IT7", new
+                {
+                    IdPer = Model.Id
+                }, null)
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.BegDa)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.EndDa)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT7s[0].Dia_1)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT7s[0].Dia_2)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT7s[0].Dia_3)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT7s[0].Dia_4)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT7s[0].Dia_5)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT7s[0].Dia_6)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT7s[0].Dia_7)
+                                        </th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.IT7s)
+
+                            {
+
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.BegDa)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.EndDa)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Dia_1)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Dia_2)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Dia_3)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Dia_4)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Dia_5)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Dia_6)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Dia_7)
+                                    </td>
+
+                                </tr>
+
+
+
+                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col-sm-4 ">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        IT8  @Html.ActionLink("   Nuevo", "Crear", "IT8", new
+                {
+                    IdPer = Model.Id
+                }, null)
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.BegDa)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.EndDa)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT8s[0].Sdo_hora)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT8s[0].Sueldo_dia)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT8s[0].Sueldo_mens)
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.IT8s)
+
+                            {
+
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.BegDa)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.EndDa)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Sdo_hora)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Sueldo_dia)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Sueldo_mens)
+                                    </td>
+                                </tr>
+
+                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        IT9  @Html.ActionLink("   Nuevo", "Crear", "IT9", new
+                {
+                    IdPer = Model.Id
+                }, null)
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.BegDa)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.EndDa)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT9s[0].Banco)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT9s[0].Clabe_banco)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT9s[0].Cuenta)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT9s[0].Estado)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT9s[0].Pais)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IT9s[0].Plaza_cta)
+                                        </th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.IT6s)
+
+                            {
+
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.BegDa)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.EndDa)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Cod_post)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Colonia)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Estado)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Land1)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Munic)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Poblac)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Stras)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Telnr)
+                                    </td>
+
+                                </tr>
+
+
+
+                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+           
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-controller="PersonalInfotipos"
+       asp-action="Index">Regresar</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,65 @@
+﻿@model IEnumerable<ASPNETCORERoleManagement.Models.ClasedeMedida>
+
+@{
+    ViewData["Title"] = "Clase de Medidas";
+}
+
+<h3>Clase de Medidas</h3>
+
+<p><span class="label label-info">@ViewBag.GpoCiaG</span>
+    <a asp-action="Create">Nuevo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Gbukrs)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Bukrs)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Massn)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Massn_desc)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Massg)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Massg_desc)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gbukrs)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bukrs)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Massn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Massn_desc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Massg)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Massg_desc)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Ver</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

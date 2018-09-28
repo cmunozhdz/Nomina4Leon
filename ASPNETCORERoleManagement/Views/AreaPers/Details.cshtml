@@ -1,0 +1,47 @@
+﻿@model ASPNETCORERoleManagement.Models.AreaPers
+
+@{
+    ViewData["Title"] = "Ver";
+}
+
+<h4>Detalles <small>Area de Personal</small></h4>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Gbukrs)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Gbukrs)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bukrs)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bukrs)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Tipo_pers)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Tipo_pers)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Area_pers)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Area_pers)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Descrip)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Descrip)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Editar</a> |
+    <a asp-action="Index">Regersar</a>
+</div>

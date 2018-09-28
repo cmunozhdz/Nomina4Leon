@@ -1,0 +1,42 @@
+﻿@model ASPNETCORERoleManagement.Models.CentrodeCostos
+
+@{
+    ViewData["Title"] = "Eliminar";
+}
+
+<h4><small> Esta seguro que desea </small> Eliminar <small> el Centro de Costos</small></h4>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Gbukrs)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Gbukrs)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bukrs)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bukrs)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Cent_cost)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Cent_cost)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Descrip)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Descrip)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-success" /> |
+        <a asp-action="Index">Regresar</a>
+    </form>
+</div>

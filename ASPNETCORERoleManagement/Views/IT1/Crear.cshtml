@@ -1,0 +1,186 @@
+﻿@model ASPNETCORERoleManagement.Models.IT1
+
+@{
+    ViewData["Title"] = "Crear";
+}
+
+<h4>Crear IT1</h4>
+<h5>@ViewBag.NoPer <span class="label label-info"> @ViewBag.Nombre</span></h5>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Crear">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input asp-for="Gbukrs" class="form-control" style="display:none" />
+                <span asp-validation-for="Gbukrs" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+
+                <input asp-for="Bukrs" class="form-control" style="display:none" />
+                <span asp-validation-for="Bukrs" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+
+                <input asp-for="Pernr" class="form-control" style="display:none" />
+                <span asp-validation-for="Pernr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Subty" class="control-label"></label>
+                <input asp-for="Subty" class="form-control" />
+                <span asp-validation-for="Subty" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="BegDa" class="control-label"></label>
+                <input asp-for="BegDa" class="form-control" />
+                <span asp-validation-for="BegDa" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="EndDa" class="control-label"></label>
+                <input asp-for="EndDa" class="form-control" />
+                <span asp-validation-for="EndDa" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Seqnr" class="control-label"></label>
+                <input asp-for="Seqnr" class="form-control" />
+                <span asp-validation-for="Seqnr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+
+                <input asp-for="Aedtm" class="form-control" style="display:none" />
+                <span asp-validation-for="Aedtm" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+
+                <input asp-for="Uname" class="form-control" style="display:none" />
+                <span asp-validation-for="Uname" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="Divi" class="control-label"></label>
+                <select asp-for="Divi" id="Divi"
+                        class="form-control"
+                        asp-items="@(new SelectList(ViewBag.ListaDivis, "Divi", "Descrip"))"></select>
+                <span asp-validation-for="Divi" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="Subdivis" class="control-label"></label>
+                <select class="form-control" asp-for="Subdivis" id="Subdivis"
+                        asp-items="@(new SelectList(string.Empty,"id", "text"))"></select>
+                <span asp-validation-for="Subdivis" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="Tipo_pers" class="control-label"></label>
+                <select class="form-control" id="Tipo_pers" asp-for="Tipo_pers"
+                        asp-items="@(new SelectList(ViewBag.TipoPers,"Value", "Text"))"></select>
+                <span asp-validation-for="Tipo_pers" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="Area_pers" class="control-label"></label>
+                <select class="form-control" asp-for="Area_pers" id="Area_pers"
+                        asp-items="@(new SelectList(string.Empty,"id", "text"))"></select>
+                <span asp-validation-for="Area_pers" class="text-danger"></span>
+            </div>
+
+            <div class="form-group col-md-6">
+                <label asp-for="Nomina" class="control-label"></label>
+                <select asp-for="Nomina"
+                        class="form-control"
+                        id="Nomina" name="Nomina"
+                        asp-items="@(new SelectList(ViewBag.ListaNomina, "Nomina", "Descrip"))"></select>
+                <span asp-validation-for="Nomina" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="Cent_cost" class="control-label"></label>
+                <select asp-for="Cent_cost"
+                        class="form-control"
+                        id="Cent_cost" 
+                        asp-items="@(new SelectList(ViewBag.CentroCostos, "Cent_cost", "Descrip"))"></select>
+                <span asp-validation-for="Cent_cost" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Orgeh" class="control-label"></label>
+                <input asp-for="Orgeh" class="form-control" />
+                <span asp-validation-for="Orgeh" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Plans" class="control-label"></label>
+                <input asp-for="Plans" class="form-control" />
+                <span asp-validation-for="Plans" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Stell" class="control-label"></label>
+                <input asp-for="Stell" class="form-control" />
+                <span asp-validation-for="Stell" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="PersonalId" class="form-control" style="display:none" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Crear" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-controller="Personals"
+       asp-action="Edit"
+       asp-route-id="@Model.PersonalId">Regresar</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('#Divi').change(function () {
+
+                var url = '@Url.Content("~/")' + "IT1/GetSubdivis";
+                var ddlsource = "#Divi";
+                var ddlsourcebukrs = "#Bukrs"
+                var ddlgbukrs = "#Gbukrs"
+                $.getJSON(url, { bukrs: $(ddlsourcebukrs).val(), divis: $(ddlsource).val(), gbukrs: $(ddlgbukrs).val() }, function (data) {
+                    var items = '';
+                    $("#Subdivis").empty();
+                    $.each(data, function (i, subcategory) {
+                        items += "<option value='" + subcategory.value + "'>" + subcategory.text + "</option>";
+                    });
+                    $('#Subdivis').html(items);
+
+                });
+
+
+            });
+
+
+            $('#Tipo_pers').change(function () {
+
+                          var url = '@Url.Content("~/")' + "IT1/GetAreaPer";
+                var ddlsource = "#Tipo_pers";
+                var ddlsourcebukrs = "#Bukrs"
+                var ddlgbukrs = "#Gbukrs"
+                $.getJSON(url, { bukrs: $(ddlsourcebukrs).val(), tipoper: $(ddlsource).val(), gbukrs: $(ddlgbukrs).val() }, function (data) {
+                    var items = '';
+                    $("#Area_pers").empty();
+                    $.each(data, function (i, subcategory) {
+                        items += "<option value='" + subcategory.value + "'>" + subcategory.text + "</option>";
+
+                    });
+                    $('#Area_pers').html(items);
+
+
+                });
+
+
+            });
+
+
+
+
+
+
+        });
+    </script>
+}

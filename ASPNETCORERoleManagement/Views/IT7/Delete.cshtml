@@ -1,0 +1,147 @@
+﻿@model ASPNETCORERoleManagement.Models.IT7
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>IT7</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Gbukrs)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Gbukrs)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bukrs)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bukrs)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Pernr)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Pernr)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Subty)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Subty)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BegDa)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BegDa)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EndDa)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EndDa)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Seqnr)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Seqnr)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Aedtm)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Aedtm)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Uname)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Uname)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Hrs_Trab)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Hrs_Trab)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Hr_Entrada)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Hr_Entrada)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Hr_Salida)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Hr_Salida)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Hr_Pausa1)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Hr_Pausa1)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Hr_Pausa2)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Hr_Pausa2)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Dia_1)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Dia_1)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Dia_2)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Dia_2)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Dia_3)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Dia_3)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Dia_4)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Dia_4)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Dia_5)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Dia_5)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Dia_6)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Dia_6)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Dia_7)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Dia_7)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

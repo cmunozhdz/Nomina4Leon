@@ -1,0 +1,41 @@
+﻿@model ASPNETCORERoleManagement.Models.Divis
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h3>Detalles<small>-Divisiones</small></h3>
+
+<div>
+      <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Gbukrs)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Gbukrs)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bukrs)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bukrs)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Divi)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Divi)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Descrip)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Descrip)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Editar</a> |
+    <a asp-action="Index">Regresar</a>
+</div>

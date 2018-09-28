@@ -1,0 +1,64 @@
+﻿@model ASPNETCORERoleManagement.Models.ClasedeMedida
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    ViewData["Title"] = "Editar";
+}
+<h4></h4>
+
+<h3><span class="label label-info">@HttpContextAccessor.HttpContext.Session.GetString("_GpoCia")</span>Editar<small>Clase de Medida </small></h3>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="row">
+                <div class="form-group col-md-5">
+                    <label asp-for="Gbukrs" class="control-label"></label>
+                    <input asp-for="Gbukrs" class="form-control" readonly />
+                    <span asp-validation-for="Gbukrs" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-5">
+                    <label asp-for="Bukrs" class="control-label"></label>
+                    <!--<input asp-for="Bukrs" class="form-control" /> -->
+                    <select asp-for="Bukrs"
+                            class="form-control"
+                            asp-items="@(new SelectList(ViewBag.DaBukrs, "Text", "Value"))"></select>
+                    <span asp-validation-for="Bukrs" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Massn" class="control-label"></label>
+                <input asp-for="Massn" class="form-control" />
+                <span asp-validation-for="Massn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Massn_desc" class="control-label"></label>
+                <input asp-for="Massn_desc" class="form-control" />
+                <span asp-validation-for="Massn_desc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Massg" class="control-label"></label>
+                <input asp-for="Massg" class="form-control" />
+                <span asp-validation-for="Massg" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Massg_desc" class="control-label"></label>
+                <input asp-for="Massg_desc" class="form-control" />
+                <span asp-validation-for="Massg_desc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Grabar" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Regresar</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

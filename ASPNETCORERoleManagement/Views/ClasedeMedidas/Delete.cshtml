@@ -1,0 +1,57 @@
+﻿@model ASPNETCORERoleManagement.Models.ClasedeMedida
+
+@{
+    ViewData["Title"] = "Eliminar";
+}
+
+<h2>Eliminar</h2>
+
+<h3>Deseas Eliminar?</h3>
+<div>
+    <h4>Clase de Medida</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Gbukrs)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Gbukrs)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bukrs)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bukrs)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Massn)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Massn)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Massn_desc)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Massn_desc)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Massg)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Massg)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Massg_desc)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Massg_desc)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Eliminar" class="btn btn-success" /> |
+        <a asp-action="Index">Regresar</a>
+    </form>
+</div>

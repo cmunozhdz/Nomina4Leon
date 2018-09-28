@@ -1,0 +1,154 @@
+﻿@model IEnumerable<ASPNETCORERoleManagement.Models.Cat1>
+
+@{
+    ViewData["Title"] = "Catalogo 1";
+}
+
+<h4>Catalogo 1</h4>
+
+<p><span class="label label-info">@ViewBag.GpoCiaG</span>
+    <a asp-action="Create">Nuevo</a>
+</p>
+<div class="container">
+    <!-- Default panel contents -->
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover  table-condensed ">
+            
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Gbukrs)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Bukrs)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Correo_resp)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Nombre_largo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Nombre)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Pais)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Rfc)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Of_schp)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Calle_num)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Num_edif)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Colonia)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Poblac)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Cod_post)
+                        </th>
+                        <th>
+
+                            @Html.DisplayNameFor(model => model.Estado)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Munic)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Telefono)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Tel_cel_respo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Skype_resp)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Nombre_resp)
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                            <a asp-action="Details" asp-route-id="@item.Id">Ver</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Gbukrs)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Bukrs)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Correo_resp)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nombre_largo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Pais)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Rfc)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Of_schp)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Calle_num)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Num_edif)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Colonia)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Poblac)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Cod_post)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Estado)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Munic)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Telefono)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Tel_cel_respo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Skype_resp)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nombre_resp)
+                        </td>
+
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>

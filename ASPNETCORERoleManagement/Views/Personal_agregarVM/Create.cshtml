@@ -1,0 +1,689 @@
+﻿@model ASPNETCORERoleManagement.Models.PersonalViewModels.Personal_agregarVM
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    ViewData["Title"] = "Crear";
+}
+
+<h4><span class="label label-info">@HttpContextAccessor.HttpContext.Session.GetString("_GpoCia")</span> Crear <small>Personal</small></h4>
+<hr />
+<div class="row">
+    <div>
+        
+        <form asp-action="Create">
+
+            <div class="col-sm-4 ">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Datos Generales</div>
+                    <div class="panel-body">
+
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="row">
+                            <div class="form-group col-sm-4">
+                                <label asp-for="Gbukrs" class="control-label"></label>
+                                <input asp-for="Gbukrs" class="form-control" value="@ViewBag.GpoCiaG" readonly />
+                                <span asp-validation-for="Gbukrs" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label asp-for="Bukrs" class="control-label"></label>
+                                <select asp-for="Bukrs"
+                                        class="form-control"
+                                        asp-items="@(new SelectList(ViewBag.DaBukrs, "Text", "Value"))"></select>
+                                <span asp-validation-for="Bukrs" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label asp-for="Pernr" class="control-label"></label>
+                                <input asp-for="Pernr" class="form-control" />
+                                <span asp-validation-for="Pernr" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-4">
+                                <label asp-for="Subty" class="control-label"></label>
+                                <input asp-for="Subty" class="form-control" />
+                                <span asp-validation-for="Subty" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-sm-8">
+                                <label asp-for="Seqnr" class="control-label"></label>
+                                <input asp-for="Seqnr" class="form-control" />
+                                <span asp-validation-for="Seqnr" class="text-danger"></span>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label asp-for="BegDa" class="control-label"></label>
+                                <input asp-for="BegDa" class="form-control" />
+                                <span asp-validation-for="BegDa" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label asp-for="EndDa" class="control-label"></label>
+                                <input asp-for="EndDa" class="form-control" />
+                                <span asp-validation-for="EndDa" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-5">
+                            <label asp-for="Title" class="control-label"></label>
+                            <!--<input asp-for="Title" class="form-control" />-->
+
+                            <div class="radio">
+                                <label><input asp-for="Title" type="radio" value="Sr" checked="checked">Sr</label>
+                            </div>
+                            <div class="radio">
+                                <label><input asp-for="Title" type="radio" value="Sra">Sra</label>
+                            </div>
+                            <div class="radio">
+                                <label><input asp-for="Title" type="radio" value="Srta">Srita</label>
+                            </div>
+
+                            <span asp-validation-for="Title" class="text-danger"></span>
+                        </div>
+
+
+                        <div class="form-group col-sm-7">
+                            <label asp-for="Vorna" class="control-label"></label>
+                            <input asp-for="Vorna" class="form-control" />
+                            <span asp-validation-for="Vorna" class="text-danger"></span>
+                        </div>
+                        <div class="row">
+
+                            <div class="form-group col-sm-6">
+                                <label asp-for="Nachn" class="control-label"></label>
+                                <input asp-for="Nachn" class="form-control" />
+                                <span asp-validation-for="Nachn" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label asp-for="Nach2" class="control-label"></label>
+                                <input asp-for="Nach2" class="form-control" />
+                                <span asp-validation-for="Nach2" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            <!--aqui-->
+
+
+
+            <div class="col-sm-4 ">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Datos Organizativos</div>
+                    <div class="panel-body">
+
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label asp-for="IntMassgid" class="control-label"></label>
+                                <select class="form-control" id="IntMassgid" asp-for="IntMassgid"
+                                        asp-items="@(new SelectList(string.Empty,"id", "text"))"></select>
+                                <span asp-validation-for="IntMassgid" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group col-sm-6">
+                                <label asp-for="Estatus" class="control-label"></label>
+                                <select asp-for="Estatus" id="Estatus" class="form-control" asp-items="@(new SelectList(string.Empty, "Estatus", "Desc"))"></select>                     
+                                <span asp-validation-for="Estatus" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                           
+
+                            <div class="form-group col-sm-6">
+
+                                <label asp-for="Tipo_pers" class="control-label"></label>
+
+                                <select class="form-control" id="Tipo_pers" asp-for="Tipo_pers"
+                                        asp-items="@(new SelectList(string.Empty,"id", "text"))"></select>
+                                <span asp-validation-for="Tipo_pers" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label asp-for="Area_pers" class="control-label"></label>
+                                <select class="form-control" id="Area_pers" asp-for="Area_pers"
+                                        asp-items="@(new SelectList(string.Empty,"id", "text"))"></select>
+                                <span asp-validation-for="Area_pers" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label asp-for="Divi" class="control-label"></label>
+                            <select asp-for="Divi" class="form-control" id="Divi"
+                                    asp-items="@(new SelectList(string.Empty, "Divi", "Descrip"))"></select>
+                            <span asp-validation-for="Divi" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label asp-for="Subdivis" class="control-label"></label>
+                            <select class="form-control"  asp-for="Subdivis"
+                                    asp-items="@(new SelectList(string.Empty,"id", "text"))"></select>
+                            <span asp-validation-for="Subdivis" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group col-sm-6">
+                            <label asp-for="Nomina" class="control-label"></label>
+                            <select asp-for="Nomina"
+                                    class="form-control"
+                                    id="Nomina" name="Nomina"
+                                    asp-items="@(new SelectList(string.Empty, "Nomina", "Descrip"))"></select>
+                            <span asp-validation-for="Nomina" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label asp-for="Cent_cost" class="control-label"></label>
+                            <select asp-for="Cent_cost"
+                                    class="form-control"
+                                    id="Cent_cost" name="Cent_cost"
+                                    asp-items="@(new SelectList(string.Empty, "Cent_cost", "Descrip"))"></select>
+                            <span asp-validation-for="Cent_cost" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group col-sm-6">
+                            <label asp-for="Orgeh" class="control-label"></label>
+                            <input asp-for="Orgeh" class="form-control" />
+                            <span asp-validation-for="Orgeh" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label asp-for="Plans" class="control-label"></label>
+                            <input asp-for="Plans" class="form-control" />
+                            <span asp-validation-for="Plans" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label asp-for="Stell" class="control-label"></label>
+                            <input asp-for="Stell" class="form-control" />
+                            <span asp-validation-for="Stell" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <!--aqui2-->
+            <div class="col-sm-4 ">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">Título </div>
+                    <div class="panel-body">
+
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label asp-for="Cttyp" class="control-label"></label>
+
+                                <select asp-for="Cttyp"
+                                        class="form-control"
+                                        asp-items="@(new SelectList(ViewBag.ListofClasedeContrato, "Value", "Text"))"></select>
+                                <span asp-validation-for="Cttyp" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-sm-6">
+                            <label asp-for="Prbzt" class="control-label"></label>
+                            <input asp-for="Prbzt" class="form-control" />
+                            <span asp-validation-for="Prbzt" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label asp-for="Prbeh" class="control-label"></label>                            
+                            <select asp-for="Prbeh"
+                                    class="form-control"
+                                    asp-items="@(new SelectList(ViewBag.ListofPerPru, "Value", "Text"))"></select>
+
+                            <span asp-validation-for="Prbeh" class="text-danger"></span>
+                        </div>
+
+
+                        <div class="form-group col-sm-6">
+                            <label asp-for="Curp" class="control-label"></label>
+                            <input asp-for="Curp" class="form-control" />
+                            <span asp-validation-for="Curp" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label asp-for="Gesch" class="control-label"></label>
+
+                            <select asp-for="Gesch"
+                                    class="form-control"
+                                    asp-items="@(new SelectList(ViewBag.ListofClavedeSexo, "Value", "Text"))"></select>
+
+                            <span asp-validation-for="Gesch" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label asp-for="GbDat" class="control-label"></label>
+                            <input asp-for="GbDat" class="form-control" />
+                            <span asp-validation-for="GbDat" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label asp-for="Gblnd" class="control-label"></label>
+                            <input asp-for="Gblnd" class="form-control" />
+                            <span asp-validation-for="Gblnd" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label asp-for="Gbdep" class="control-label"></label>
+
+                            <select asp-for="Gbdep"
+                                    class="form-control"
+                                    asp-items="@(new SelectList(ViewBag.ListofRegion1, "rg", "nombre"))"></select>
+                            <span asp-validation-for="Gbdep" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label asp-for="Gbort" class="control-label"></label>
+                            <input asp-for="Gbort" class="form-control" />
+                            <span asp-validation-for="Gbort" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label asp-for="Natio" class="control-label"></label>
+                            <input asp-for="Natio" class="form-control" />
+                            <span asp-validation-for="Natio" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+           </div>
+
+                <!--aqui3-->
+                <div class="col-sm-4 well well-sm">
+
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Usrty1" class="control-label"></label>
+                        <input asp-for="Usrty1" class="form-control" />
+                        <span asp-validation-for="Usrty1" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Usrid1" class="control-label"></label>
+                        <input asp-for="Usrid1" class="form-control" />
+                        <span asp-validation-for="Usrid1" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Ine" class="control-label"></label>
+                        <input asp-for="Ine" class="form-control" />
+                        <span asp-validation-for="Ine" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Rfc" class="control-label"></label>
+                        <input asp-for="Rfc" class="form-control" />
+                        <span asp-validation-for="Rfc" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Licencia" class="control-label"></label>
+                        <input asp-for="Licencia" class="form-control" />
+                        <span asp-validation-for="Licencia" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Issste" class="control-label"></label>
+                        <input asp-for="Issste" class="form-control" />
+                        <span asp-validation-for="Issste" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Afore" class="control-label"></label>
+                        <input asp-for="Afore" class="form-control" />
+                        <span asp-validation-for="Afore" class="text-danger"></span>
+                    </div>
+
+
+
+                </div>
+                <!--aqui4-->
+
+                <div class="col-sm-4 well well-sm">
+
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Stras" class="control-label"></label>
+                        <input asp-for="Stras" class="form-control" />
+                        <span asp-validation-for="Stras" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Colonia" class="control-label"></label>
+                        <input asp-for="Colonia" class="form-control" />
+                        <span asp-validation-for="Colonia" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Poblac" class="control-label"></label>
+                        <input asp-for="Poblac" class="form-control" />
+                        <span asp-validation-for="Poblac" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Cod_post" class="control-label"></label>
+                        <input asp-for="Cod_post" class="form-control" />
+                        <span asp-validation-for="Cod_post" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Estado" class="control-label"></label>
+                        <select asp-for="Estado"
+                                class="form-control"
+                                asp-items="@(new SelectList(ViewBag.ListofEstado, "rg", "nombre"))"></select>
+                        <span asp-validation-for="Estado" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Munic" class="control-label"></label>
+                        <select class="form-control" id="Munic" asp-for="Munic"
+                                asp-items="@(new SelectList(string.Empty,"id", "text"))"></select>
+                        <span asp-validation-for="Munic" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Land1" class="control-label"></label>
+                        <input asp-for="Land1" class="form-control" />
+                        <span asp-validation-for="Land1" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Telnr" class="control-label"></label>
+                        <input asp-for="Telnr" class="form-control" />
+                        <span asp-validation-for="Telnr" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <!--aqui5-->
+                <div class="col-sm-4 well well-sm">
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label asp-for="Hrs_Trab" class="control-label"></label>
+                            <input asp-for="Hrs_Trab" class="form-control" />
+                            <span asp-validation-for="Hrs_Trab" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label asp-for="Hr_Entrada" class="control-label"></label>
+                            <input asp-for="Hr_Entrada" class="form-control" />
+                            <span asp-validation-for="Hr_Entrada" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label asp-for="Hr_Salida" class="control-label"></label>
+                            <input asp-for="Hr_Salida" class="form-control" />
+                            <span asp-validation-for="Hr_Salida" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label asp-for="Hr_Pausa1" class="control-label"></label>
+                            <input asp-for="Hr_Pausa1" class="form-control" />
+                            <span asp-validation-for="Hr_Pausa1" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label asp-for="Hr_Pausa2" class="control-label"></label>
+                            <input asp-for="Hr_Pausa2" class="form-control" />
+                            <span asp-validation-for="Hr_Pausa2" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-1">
+                            <label asp-for="Dia_1" class="control-label"></label>
+                            <input asp-for="Dia_1" class="form-control" type="checkbox" value="true" />
+                            <span asp-validation-for="Dia_1" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-sm-1">
+                            <label asp-for="Dia_2" class="control-label"></label>
+                            <input asp-for="Dia_2" class="form-control" type="checkbox" value="true" />
+                            <span asp-validation-for="Dia_2" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-sm-1">
+                            <label asp-for="Dia_3" class="control-label"></label>
+                            <input asp-for="Dia_3" class="form-control" type="checkbox" value="true" />
+                            <span asp-validation-for="Dia_3" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-sm-1">
+                            <label asp-for="Dia_4" class="control-label"></label>
+                            <input asp-for="Dia_4" class="form-control" type="checkbox" value="true" />
+                            <span asp-validation-for="Dia_4" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-sm-1">
+                            <label asp-for="Dia_5" class="control-label"></label>
+                            <input asp-for="Dia_5" class="form-control" type="checkbox" />
+                            <span asp-validation-for="Dia_5" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-sm-1">
+                            <label asp-for="Dia_6" class="control-label"></label>
+                            <input asp-for="Dia_6" class="form-control" type="checkbox" />
+                            <span asp-validation-for="Dia_6" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-sm-1">
+                            <label asp-for="Dia_7" class="control-label"></label>
+                            <input asp-for="Dia_7" class="form-control" type="checkbox" />
+                            <span asp-validation-for="Dia_7" class="text-danger"></span>
+                        </div>
+                    </div>
+
+
+                </div>
+                <!--aqui6-->
+                <div class="col-sm-4 well well-sm">
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Sueldo_dia" class="control-label"></label>
+                        <input asp-for="Sueldo_dia" class="form-control" />
+                        <span asp-validation-for="Sueldo_dia" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Sueldo_mens" class="control-label"></label>
+                        <input asp-for="Sueldo_mens" class="form-control" />
+                        <span asp-validation-for="Sueldo_mens" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Sdo_hora" class="control-label"></label>
+                        <input asp-for="Sdo_hora" class="form-control" />
+                        <span asp-validation-for="Sdo_hora" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Tipo_pago" class="control-label"></label>
+                        <select asp-for="Tipo_pago"
+                                class="form-control"
+                                asp-items="@(new SelectList(ViewBag.ListofTipoPago, "Value", "Text"))"></select>
+
+                        <span asp-validation-for="Tipo_pago" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Banco" class="control-label"></label>
+                        <input asp-for="Banco" class="form-control" Enabled="false" CssClass="disabled" />
+                        <span asp-validation-for="Banco" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Pais" class="control-label"></label>
+                        <input asp-for="Pais" class="form-control" Enabled="false" CssClass="disabled" />
+                        <span asp-validation-for="Pais" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Cuenta" class="control-label"></label>
+                        <input asp-for="Cuenta" class="form-control" Enabled="false" CssClass="disabled" />
+                        <span asp-validation-for="Cuenta" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Plaza_cta" class="control-label"></label>
+                        <input asp-for="Plaza_cta" class="form-control" Enabled="false" CssClass="disabled" />
+                        <span asp-validation-for="Plaza_cta" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Estado1" class="control-label"></label>
+                        <input asp-for="Estado1" class="form-control" />
+                        <span asp-validation-for="Estado1" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Clabe_banco" class="control-label"></label>
+                        <input asp-for="Clabe_banco" class="form-control" Enabled="false" CssClass="disabled" />
+                        <span asp-validation-for="Clabe_banco" class="text-danger"></span>
+                    </div>
+                    
+                </div>
+                <!--aqui7-->
+                <div class="form-group">
+                    <input type="submit" value="Crear" class="btn btn-success" />
+                </div>
+        </form>
+    </div>
+    </div>
+
+    <div>
+        <a asp-action="Index" asp-controller="PersonalInfotipos">Regresar</a>
+    </div>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        <script type="text/javascript">
+
+            $(document).ready(function () {
+                $('#Bukrs').change(function () {
+                    var ddlsource = "#Bukrs";
+                    var url = '@Url.Content("~/")' + "Personal_agregarVM/GetEstatus";
+                    $.getJSON(url, { idp: $(ddlsource).val() }, function (data) {
+                        var itemsE = '';
+                        $("#Estatus").empty();
+                        $.each(data, function (i, divisiones) {
+                            itemsE += "<option value='" + divisiones.value + "'>" + divisiones.text + "</option>";
+                        });
+                        $('#Estatus').html(itemsE);
+                    });
+
+
+                    
+
+
+                    var url = '@Url.Content("~/")' + "Personal_agregarVM/GetTipoPer";
+                    var ddlsource = "#Bukrs";
+                    $.getJSON(url, { bukrs: $(ddlsource).val() }, function (data) {
+                        var items = '';
+                        $("#Tipo_pers").empty();
+                        $.each(data, function (i, tipoper) {
+                            items += "<option value='" + tipoper.value + "'>" + tipoper.text + "</option>";
+                        });
+                        $('#Tipo_pers').html(items);
+                    });
+                     var url = '@Url.Content("~/")' + "Personal_agregarVM/GetClasedeMedida";
+                    var ddlsource = "#Bukrs";
+                    $.getJSON(url, { idp: $(ddlsource).val() }, function (data) {
+                        var items = '';
+                        $("#IntMassgid").empty();
+                        $.each(data, function (i, tipoper2) {
+                            items += "<option value='" + tipoper2.value + "'>" + tipoper2.text + "</option>";
+                        });
+                        $('#IntMassgid').html(items);
+                    });
+
+                    var url = '@Url.Content("~/")' + "Personal_agregarVM/GetDivisions";
+                    var ddlsource = "#Bukrs";
+                    $.getJSON(url, { idp: $(ddlsource).val() }, function (data) {
+                        var items = '';
+                        $("#Divi").empty();
+                        $.each(data, function (i, divisiones) {
+                            items += "<option value='" + divisiones.value + "'>" + divisiones.text + "</option>";
+                        });
+                        $('#Divi').html(items);
+
+                    });
+
+                    var url = '@Url.Content("~/")' + "Personal_agregarVM/GetNomina";
+                    var ddlsource = "#Bukrs";
+                    $.getJSON(url, { idp: $(ddlsource).val() }, function (data) {
+                        var items = '';
+                        $("#Nomina").empty();
+                        $.each(data, function (i, divisiones) {
+                            items += "<option value='" + divisiones.value + "'>" + divisiones.text + "</option>";
+                        });
+                        $('#Nomina').html(items);
+                    });
+
+                    var url = '@Url.Content("~/")' + "Personal_agregarVM/GetCentrodeCostos";
+                    var ddlsource = "#Bukrs";
+                    $.getJSON(url, { idp: $(ddlsource).val() }, function (data) {
+                        var items = '';
+                        $("#Cent_cost").empty();
+                        $.each(data, function (i, divisiones) {
+                            items += "<option value='" + divisiones.value + "'>" + divisiones.text + "</option>";
+                        });
+                        $('#Cent_cost').html(items);
+                    });
+
+                   
+
+
+
+                });
+         
+
+                $('#Tipo_pers').change(function () {
+               var url = '@Url.Content("~/")' + "Personal_agregarVM/GetAreaPer";
+               var ddlsource = "#Tipo_pers";
+               var ddlsourcebukrs = "#Bukrs"
+
+                    $.getJSON(url, { bukrs: $(ddlsourcebukrs).val(), tipoper: $(ddlsource).val() }, function (data) {
+                    var items = '';
+                    $("#Area_pers").empty();
+                    $.each(data, function (i, subcategory) {
+                        items += "<option value='" + subcategory.value + "'>" + subcategory.text + "</option>";
+                    });
+
+                        $('#Area_pers').html(items);
+
+                    });
+
+
+                });
+
+
+
+
+                $('#Divi').change(function () {
+
+                    var url = '@Url.Content("~/")' + "Personal_agregarVM/GetSubdivis";
+                    var ddlsource = "#Divi";
+                    var ddlsourcebukrs = "#Bukrs"
+                    $.getJSON(url, { bukrs: $(ddlsourcebukrs).val(), divis: $(ddlsource).val() }, function (data) {
+                        var items = '';
+                        $("#Subdivis").empty();
+                        $.each(data, function (i, subcategory) {
+                            items += "<option value='" + subcategory.value + "'>" + subcategory.text + "</option>";
+                        });
+                        $('#Subdivis').html(items);
+                    });
+                });
+
+
+
+                $('#Estado').change(function () {
+                    var url = '@Url.Content("~/")' + "Personal_agregarVM/GetMunicipios";
+                    var ddlsource = "#Estado";
+                    $.getJSON(url, { region1: $(ddlsource).val() }, function (data) {
+                        var items = '';
+                        $("#Munic").empty();
+                        $.each(data, function (i, subcategory) {
+                            items += "<option value='" + subcategory.value + "'>" + subcategory.text + "</option>";
+                        });
+                        $('#Munic').html(items);
+                    });
+                });
+
+
+                          $('#Tipo_pago').change(function () {
+                              var ddlsource = "#Tipo_pago";
+                              if ($(ddlsource).val() == "T") {
+                                  $(Banco).removeClass("disabled");
+                                  $(Banco).attr('disabled', false);
+                                  $(Cuenta).removeClass("disabled");
+                                  $(Cuenta).attr('disabled', false);
+                                  $(Pais).removeClass("disabled");
+                                  $(Pais).attr('disabled', false);
+                                  $(Plaza_cta).removeClass("disabled");
+                                  $(Plaza_cta).attr('disabled', false);
+                                  $(Estado1).removeClass("disabled");
+                                  $(Estado1).attr('disabled', false);
+                                  $(Clabe_banco).removeClass("disabled");
+                                  $(Clabe_banco).attr('disabled', false);
+
+                              } else {
+                                  $(Banco).addClass("disabled");
+                                  $(Banco).attr('disabled', true);
+                                  $(Cuenta).addClass("disabled");
+                                  $(Cuenta).attr('disabled', true);
+                                  $(Pais).addClass("disabled");
+                                  $(Pais).attr('disabled', true);
+                                  $(Plaza_cta).addClass("disabled");
+                                  $(Plaza_cta).attr('disabled', true);
+                                  $(Estado1).addClass("disabled");
+                                  $(Estado1).attr('disabled', true);
+                                  $(Clabe_banco).addClass("disabled");
+                                  $(Clabe_banco).attr('disabled', true);
+                              }       
+
+                              //nombrecampo.disabled = true; // Así desactivamos
+
+                          });
+
+
+
+
+
+            });
+               
+        </script>
+    }

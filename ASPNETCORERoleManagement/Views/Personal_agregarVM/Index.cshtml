@@ -1,0 +1,431 @@
+﻿@model IEnumerable<ASPNETCORERoleManagement.Models.PersonalViewModels.Personal_agregarVM>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Gbukrs)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Bukrs)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Pernr)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Subty)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BegDa)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EndDa)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Seqnr)
+                </th>
+                  <th>
+                    @Html.DisplayNameFor(model => model.Vorna)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nachn)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nach2)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Estatus)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Tipo_pers)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Area_pers)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Divi)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Subdivis)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nomina)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cent_cost)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Orgeh)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Plans)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Stell)
+                </th>
+                 <th>
+                    @Html.DisplayNameFor(model => model.Cttyp)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Prbzt)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Prbeh)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                 <th>
+                    @Html.DisplayNameFor(model => model.Curp)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Gesch)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.GbDat)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Gblnd)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Gbdep)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Gbort)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Natio)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Usrty1)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Usrid1)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Ine)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Rfc)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Licencia)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Issste)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Afore)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Stras)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Colonia)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Poblac)
+                </th>
+                 <th>
+                    @Html.DisplayNameFor(model => model.Estado)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Munic)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Land1)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Telnr)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Hrs_Trab)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Hr_Entrada)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Hr_Salida)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Hr_Pausa1)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Hr_Pausa2)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Dia_1)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Dia_2)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Dia_3)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Dia_4)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Dia_5)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Dia_6)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Dia_7)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Sueldo_dia)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Sueldo_mens)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Sdo_hora)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Tipo_pago)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Banco)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Pais)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cuenta)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Plaza_cta)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Estado1)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Clabe_banco)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gbukrs)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bukrs)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pernr)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subty)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BegDa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Seqnr)
+            </td>
+             <td>
+                @Html.DisplayFor(modelItem => item.Vorna)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nachn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nach2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tipo_pers)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Area_pers)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Divi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subdivis)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nomina)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cent_cost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Orgeh)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Plans)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Stell)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cttyp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prbzt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prbeh)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Curp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gesch)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GbDat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gblnd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gbdep)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gbort)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Natio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Usrty1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Usrid1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ine)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rfc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Licencia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Issste)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Afore)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Stras)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Colonia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Poblac)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Munic)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Land1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telnr)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hrs_Trab)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hr_Entrada)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hr_Salida)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hr_Pausa1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hr_Pausa2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dia_1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dia_2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dia_3)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dia_4)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dia_5)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dia_6)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dia_7)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sueldo_dia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sueldo_mens)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sdo_hora)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tipo_pago)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Banco)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pais)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cuenta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Plaza_cta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Clabe_banco)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

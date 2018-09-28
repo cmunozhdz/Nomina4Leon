@@ -1,0 +1,56 @@
+﻿@model IEnumerable<ASPNETCORERoleManagement.Models.Estatus_stat2>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Estatus del Empleado </h2>
+
+<p>
+    <span class="label label-info">@ViewBag.GpoCiaG</span>
+        <a asp-action="Create">Nuevo</a>
+
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Gbukrs)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bukrs)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Estatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Desc)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gbukrs)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Bukrs)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Desc)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Ver</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

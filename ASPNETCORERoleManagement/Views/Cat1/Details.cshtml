@@ -1,0 +1,132 @@
+﻿@model ASPNETCORERoleManagement.Models.Cat1
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Cat1</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Gbukrs)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Gbukrs)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bukrs)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bukrs)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Correo_resp)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Correo_resp)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre_largo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nombre_largo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Pais)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Pais)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Rfc)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Rfc)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Of_schp)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Of_schp)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Calle_num)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Calle_num)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Num_edif)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Num_edif)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Colonia)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Colonia)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Poblac)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Poblac)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Cod_post)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Cod_post)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Munic)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Munic)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Telefono)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Tel_cel_respo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Tel_cel_respo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Skype_resp)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Skype_resp)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre_resp)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nombre_resp)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Editar</a> |
+    <a asp-action="Index">Regresar</a>
+</div>

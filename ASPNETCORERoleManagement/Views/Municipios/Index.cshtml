@@ -1,0 +1,59 @@
+﻿@model MunicGenreViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Municipios</h2>
+
+<p>
+    <a asp-action="Create">Nuevo</a>
+</p>
+<form asp-controller="Municipios" asp-action="Index" method="get">
+    <p>
+        <select asp-for="municGenre" asp-items="Model.genres">
+            <option value="">Todo</option>
+        </select>
+        Municipio: <input type="text" name="SearchString">
+        <input type="submit" value="Filtrar" class="btn btn-success" />
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.municipios[0].region)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.municipios[0].mpio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.municipios[0].descripcion)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.municipios ) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.region)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mpio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.descripcion)
+            </td>
+
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.id">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.id">Ver</a> |
+                <a asp-action="Delete" asp-route-id="@item.id">Eliminar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

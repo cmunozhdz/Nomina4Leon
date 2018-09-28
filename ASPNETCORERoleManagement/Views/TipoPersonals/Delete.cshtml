@@ -1,0 +1,43 @@
+﻿@model ASPNETCORERoleManagement.Models.TipoPersonal
+
+@{
+    ViewData["Title"] = "Eliminar";
+}
+
+<h4><small> Esta seguro que desea </small> Eliminar <small> el Tiop de Personal</small></h4>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Gbukrs)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Gbukrs)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bukrs)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bukrs)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Tipo_pers)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Tipo_pers)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Descrip)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Descrip)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Eliminar" class="btn btn-success" /> |
+        <a asp-action="Index">Regresar</a>
+    </form>
+</div>

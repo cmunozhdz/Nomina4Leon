@@ -1,0 +1,149 @@
+﻿@model ASPNETCORERoleManagement.Models.PersonalInfotipos
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h4><span class="label label-info">@HttpContextAccessor.HttpContext.Session.GetString("_GpoCia")</span> Crear <small>Personal</small></h4>
+<hr />
+<div class="row">
+    <div>
+        <form asp-action="RecordCard">
+            <div class="col-sm-4 well well-sm">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="row">
+                    <div class="form-group col-sm-4">
+                        <label asp-for="@Model.Personal.Gbukrs" class="control-label"></label>
+                        <input asp-for="@Model.Personal.Gbukrs" class="form-control" value="@ViewBag.GpoCiaG" readonly />
+                        <span asp-validation-for="@Model.Personal.Gbukrs" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <label asp-for="@Model.Personal.Bukrs" class="control-label" ></label>
+                        <!--  <input asp-for="Bukrs" class="form-control" />-->
+                        <label asp-for="@Model.Personal.Bukrs" class="control-label"></label>
+                        <select asp-for= "@Model.Personal.Bukrs"
+                                class="form-control" 
+                                asp-items="@(new SelectList(ViewBag.DaBukrs, "Text", "Value"))" id="Bukrs"></select>
+                        <span asp-validation-for="@Model.Personal.Bukrs" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <label asp-for="@Model.Personal.Pernr" class="control-label"></label>
+                        <input asp-for="@Model.Personal.Pernr" class="form-control" />
+                        <span asp-validation-for="@Model.Personal.Pernr" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-4">
+                        <label asp-for="@Model.Personal.Subty" class="control-label"></label>
+                        <input asp-for="@Model.Personal.Subty" class="form-control" />
+                        <span asp-validation-for="@Model.Personal.Subty" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-sm-8">
+                        <label asp-for="@Model.Personal.Seqnr" class="control-label"></label>
+                        <input asp-for="@Model.Personal.Seqnr" class="form-control" />
+                        <span asp-validation-for="@Model.Personal.Seqnr" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="form-group col-sm-6">
+                        <label asp-for="@Model.Personal.BegDa" class="control-label"></label>
+                        <input asp-for="@Model.Personal.BegDa" class="form-control" />
+                        <span asp-validation-for="@Model.Personal.BegDa" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label asp-for="@Model.Personal.EndDa" class="control-label"></label>
+                        <input asp-for="@Model.Personal.EndDa" class="form-control" />
+                        <span asp-validation-for="@Model.Personal.EndDa" class="text-danger"></span>
+                    </div>
+                </div>
+
+
+                <!-- <div class="form-group">  -->
+                <!--  <label asp-for="Aedtm" class="control-label"></label>-->
+                <!--                <input asp-for="Aedtm" class="form-control" />-->
+                <!--            <span asp-validation-for="Aedtm" class="text-danger"></span>-->
+                <!--    </div>-->
+                <!--<div class="form-group">-->
+                <!--    <label asp-for="Uname" class="control-label"></label>-->
+                <!-- <input asp-for="Uname" class="form-control" />-->
+                <!--   <span asp-validation-for="Uname" class="text-danger"></span>-->
+                <!--  </div>-->
+                <div class="form-group">
+                    <label asp-for="@Model.Personal.Vorna" class="control-label"></label>
+                    <input asp-for="@Model.Personal.Vorna" class="form-control" />
+                    <span asp-validation-for="@Model.Personal.Vorna" class="text-danger"></span>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6">
+                        <label asp-for="@Model.Personal.Nachn" class="control-label"></label>
+                        <input asp-for="@Model.Personal.Nachn" class="form-control" />
+                        <span asp-validation-for="@Model.Personal.Nachn" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label asp-for="@Model.Personal.Nach2" class="control-label"></label>
+                        <input asp-for="@Model.Personal.Nach2" class="form-control" />
+                        <span asp-validation-for="@Model.Personal.Nach2" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Crear" class="btn btn-success" />
+                </div>
+            </div>
+
+            <div class="col-sm-4 well well-sm">
+                <div class="form-group col-sm-8">
+                    <label asp-for="@Model.IdMassg" class="control-label"></label>
+                    <select asp-for="@Model.IdMassg"
+                            class="form-control"
+                            asp-items="@(new SelectList(string.Empty, "id", "text"))" id="IdMassg"></select>
+                    <span asp-validation-for="@Model.IdMassg" class="text-danger"></span>
+                </div>
+                <div class="form-group col-sm-11">
+                    <label asp-for="@Model.IT0.Estatus" class="control-label"></label>
+                    <select asp-for="@Model.IT0.Estatus
+                            class="form-control"
+                            asp-items="@(new SelectList(string.Empty, "id", "text"))" id="Estatus"></select>
+                    <span asp-validation-for="@Model.IT0.Estatus" class="text-danger"></span>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Regresar</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script type="text/javascript">
+  $(document).ready(function(){
+      $('#Bukrs').change(function() {
+            var url = '@Url.Content("~/")' + "PersonalInfotipos/GetClasedeMedida";
+        var ddlsource = "#Bukrs";
+        $.getJSON(url, { idp: $(ddlsource).val() }, function (data) {
+                var items = '';
+            $("#IdMassg").empty();
+            $.each(data, function (i, divisiones) {
+                items += "<option value='" + divisiones.val + "'>" + divisiones.text + "</option>";
+                });
+            $('#IdMassg').html(items);
+          });
+          var url = '@Url.Content("~/")' + "PersonalInfotipos/GetEstatusOcupacion";
+            $.getJSON(url, { idp: $(ddlsource).val() }, function (data) {
+              var itemsE = '';
+              $("#Estatus").empty();
+                $.each(data, function (i, divisiones) {
+                    itemsE += "<option value='" + divisiones.val + "'>" + divisiones.text + "</option>";
+                });
+                $('#Estatus').html(itemsE);
+          });
+
+
+        });
+    });
+    </script>
+}

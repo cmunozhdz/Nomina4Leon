@@ -1,0 +1,87 @@
+﻿@model ASPNETCORERoleManagement.Models.AreaPers
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    ViewData["Title"] = "Crear";
+}
+
+<h4><span class="label label-info">@HttpContextAccessor.HttpContext.Session.GetString("_GpoCia")</span> Crear <small>Área de Personal</small></h4>
+<div>
+    @{ if (TempData["message"] != null)
+        {
+            <div class="alert alert-success " role="alert" id="success-alert" data-auto-dismiss="2000">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>Registro Creado!</strong>  @TempData["message"]
+            </div>} }
+    <a asp-action="Index">Regresar</a>
+</div>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row">
+                <div class="form-group col-md-5">
+                    <label asp-for="Gbukrs" class="control-label"></label>
+                    <input asp-for="Gbukrs" class="form-control" value="@ViewBag.GpoCiaG" readonly />
+                    <span asp-validation-for="Gbukrs" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-5">
+                    <label asp-for="Bukrs" class="control-label"></label>
+                    <!--  <input asp-for="Bukrs" class="form-control" />-->
+                    <select asp-for="Bukrs"
+                            class="form-control"
+                            asp-items="@(new SelectList(ViewBag.DaBukrs, "Text", "Value"))"></select>
+                    <span asp-validation-for="Bukrs" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tipo_pers" class="control-label"></label>
+                <!--<input asp-for="Tipo_pers" class="form-control" />-->
+                <select asp-for="Tipo_pers"
+                        class="form-control"
+                        id="Tipo_pers" name="Tipo_pers"
+                        asp-items="@(new SelectList(string.Empty, "Tipo_pers", "Descrip"))"></select>
+                <span asp-validation-for="Tipo_pers" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Area_pers" class="control-label"></label>
+                <input asp-for="Area_pers" class="form-control" />
+                <span asp-validation-for="Area_pers" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Descrip" class="control-label"></label>
+                <input asp-for="Descrip" class="form-control" />
+                <span asp-validation-for="Descrip" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Crear" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Regresar</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script type="text/javascript">
+  $(document).ready(function(){
+      $('#Bukrs').change(function() {
+            var url = '@Url.Content("~/")' + "Areapers/GetTipoPer";
+        var ddlsource = "#Bukrs";
+        $.getJSON(url, { idp: $(ddlsource).val() }, function (data) {
+                var items = '';
+            $("#Tipo_pers").empty();
+            $.each(data, function (i, divisiones) {
+                    items += "<option value='" + divisiones.value + "'>" + divisiones.text + "</option>";
+                });
+            $('#Tipo_pers').html(items);
+            });
+        });
+    });
+    </script>
+}

@@ -1,0 +1,149 @@
+﻿@model ASPNETCORERoleManagement.Models.Cat1
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    ViewData["Title"] = "Editar";
+}
+
+<h3><span class="label label-info">@HttpContextAccessor.HttpContext.Session.GetString("_GpoCia")</span>-Editar<small>- Cat1</small></h3>
+<hr />
+<div class="row">
+
+    <form asp-action="Edit">
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <input type="hidden" asp-for="Id" />
+        <div class="row">
+            <div class="form-group col-md-3">
+                <label asp-for="Gbukrs" class="control-label"></label>
+                <input asp-for="Gbukrs" class="form-control" readonly />
+                <span asp-validation-for="Gbukrs" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="Bukrs" class="control-label"></label>
+                <input asp-for="Bukrs" class="form-control" />
+                <span asp-validation-for="Bukrs" class="text-danger"></span>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="form-group col-md-3">
+                <label asp-for="Correo_resp" class="control-label"></label>
+                <input asp-for="Correo_resp" class="form-control" />
+                <span asp-validation-for="Correo_resp" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="Nombre_largo" class="control-label"></label>
+                <input asp-for="Nombre_largo" class="form-control" />
+                <span asp-validation-for="Nombre_largo" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="form-group col-md-3">
+                <label asp-for="Pais" class="control-label"></label>
+                <input asp-for="Pais" class="form-control" />
+                <span asp-validation-for="Pais" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="Rfc" class="control-label"></label>
+                <input asp-for="Rfc" class="form-control" />
+                <span asp-validation-for="Rfc" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="Of_schp" class="control-label"></label>
+                <input asp-for="Of_schp" class="form-control" />
+                <span asp-validation-for="Of_schp" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-3">
+                <label asp-for="Calle_num" class="control-label"></label>
+                <input asp-for="Calle_num" class="form-control" />
+                <span asp-validation-for="Calle_num" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="Num_edif" class="control-label"></label>
+                <input asp-for="Num_edif" class="form-control" />
+                <span asp-validation-for="Num_edif" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="Colonia" class="control-label"></label>
+                <input asp-for="Colonia" class="form-control" />
+                <span asp-validation-for="Colonia" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-3">
+                <label asp-for="Poblac" class="control-label"></label>
+                <input asp-for="Poblac" class="form-control" />
+                <span asp-validation-for="Poblac" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="Cod_post" class="control-label"></label>
+                <input asp-for="Cod_post" class="form-control" />
+                <span asp-validation-for="Cod_post" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="Skype_resp" class="control-label"></label>
+                <input asp-for="Skype_resp" class="form-control" />
+                <span asp-validation-for="Skype_resp" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-3">
+                <label asp-for="Estado" class="control-label"></label>
+                <select asp-for="Estado"
+                        class="form-control"
+                        asp-items="@(new SelectList(ViewBag.ListofCategory,"rg", "nombre"))"></select>
+
+                <span asp-validation-for="Estado" class="text-danger"></span>
+
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="Munic" class="control-label"></label>
+                <!-- <input asp-for="Munic" class="form-control" /> -->
+                <select asp-for="Munic"
+                        class="form-control"
+                        id="Munic" name="Munic"
+                        asp-items="@(new SelectList(ViewBag.ListofMunicipios,"mpio", "descripcion"))"></select>
+                <span asp-validation-for="Munic" class="text-danger"></span>
+            </div>
+   
+        </div>
+        <div class="row">
+            <div class="form-group col-md-3">
+                <label asp-for="Telefono" class="control-label"></label>
+                <input asp-for="Telefono" class="form-control" />
+                <span asp-validation-for="Telefono" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="Tel_cel_respo" class="control-label"></label>
+                <input asp-for="Tel_cel_respo" class="form-control" />
+                <span asp-validation-for="Tel_cel_respo" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="Nombre_resp" class="control-label"></label>
+                <input asp-for="Nombre_resp" class="form-control" />
+                <span asp-validation-for="Nombre_resp" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group ">
+            <input type="submit" value="Grabar" class="btn btn-success" />
+        </div>
+    </form>
+        </div>
+
+<div>
+    <a asp-action="Index">Regresar</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

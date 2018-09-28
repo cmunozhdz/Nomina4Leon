@@ -1,0 +1,33 @@
+﻿@model ASPNETCORERoleManagement.Models.Region1
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Eliminar</h2>
+
+<h3>Desea Eliminar el registro?</h3>
+<div>
+    <h4>Estados</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.rg)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.rg)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="id" />
+        <input type="submit" value="Delete" class="btn btn-success" /> |
+        <a asp-action="Index">Regresar</a>
+    </form>
+</div>

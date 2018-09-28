@@ -1,0 +1,110 @@
+﻿@model ASPNETCORERoleManagement.Models.Subdivision
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    ViewData["Title"] = "Nuevo";
+
+
+}
+
+<h4><span class="label label-info">@HttpContextAccessor.HttpContext.Session.GetString("_GpoCia")</span> Crear <small>Subdivision</small></h4>
+@{ if (TempData["message"] != null)
+    {
+        <div class="alert alert-success " role="alert" id="success-alert" data-auto-dismiss="2000">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Registro Creado!</strong>  @TempData["message"]
+        </div>} }
+
+
+<span class="label label-info">@ViewBag.Message</span>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="messagealert" id="alert_container">
+            </div>
+            <div class="row">
+                <div class="form-group col-md-5">
+                    <label asp-for="Gbukrs" class="control-label"></label>
+                    <input asp-for="Gbukrs" class="form-control" value="@ViewBag.GpoCiaG" readonly />
+                    <span asp-validation-for="Gbukrs" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-5">
+                    <!--  <input asp-for="Bukrs" class="form-control" />-->
+                    <label asp-for="Bukrs" class="control-label"></label>
+                    <select asp-for="Bukrs"
+                            class="form-control"
+                            asp-items="@(new SelectList(ViewBag.DaBukrs, "Text", "Value"))"></select>
+                    <span asp-validation-for="Bukrs" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Divi" class="control-label"></label>
+                <!--  <input asp-for="Divi" class="form-control" />-->
+                <select asp-for="Divi"
+                        class="form-control"
+                        id="Divi" name="Divi"
+                        asp-items="@(new SelectList(string.Empty, "Divi", "Descrip"))"></select>
+                <span asp-validation-for="Divi" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Subdivis" class="control-label"></label>
+                <input asp-for="Subdivis" class="form-control" />
+                <span asp-validation-for="Subdivis" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Descrip" class="control-label"></label>
+                <input asp-for="Descrip" class="form-control" />
+                <span asp-validation-for="Descrip" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Crear" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Regresar</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script type="text/javascript">
+  $(document).ready(function(){
+      $('#Bukrs').change(function() {
+            var url = '@Url.Content("~/")' + "Subdivisions/GetDivisions";
+        var ddlsource = "#Bukrs";
+        $.getJSON(url, { idp: $(ddlsource).val() }, function (data) {
+                var items = '';
+            $("#Divi").empty();
+            $.each(data, function (i, divisiones) {
+                    items += "<option value='" + divisiones.value + "'>" + divisiones.text + "</option>";
+                });
+            $('#Divi').html(items);
+            });
+        });
+    });
+    </script>
+    <script type="text/javascript">
+        function ShowMessage(message, messagetype) {
+            var cssclass;
+            switch (messagetype) {
+                case 'Success':
+                    cssclass = 'alert-success'
+                    break;
+                case 'Error':
+                    cssclass = 'alert-danger'
+                    break;
+                case 'Warning':
+                    cssclass = 'alert-warning'
+                    break;
+                default:
+                    cssclass = 'alert-info'
+            }
+            $('#alert_container').append('<div id="alert_div" style="margin: 0 0.5%; -webkit-box-shadow: 3px 4px 6px #999;" class="alert fade in ' + cssclass + '"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>' + messagetype + '!</strong> <span>' + message + '</span></div>');
+        }
+    </script>
+
+}

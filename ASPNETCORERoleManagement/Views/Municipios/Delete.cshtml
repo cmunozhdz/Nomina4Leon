@@ -1,0 +1,39 @@
+﻿@model ASPNETCORERoleManagement.Models.Municipio
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Eliminar</h2>
+
+<h3>Desea Eliminar este regisro?</h3>
+<div>
+    <h4>Municipio</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.mpio)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.mpio)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.descripcion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.descripcion)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.region)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.region)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="id" />
+        <input type="submit" value="Delete" class="btn btn-success" /> |
+        <a asp-action="Index">Regresar</a>
+    </form>
+</div>

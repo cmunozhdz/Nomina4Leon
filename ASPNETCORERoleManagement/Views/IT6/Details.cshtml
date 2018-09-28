@@ -1,0 +1,120 @@
+﻿@model ASPNETCORERoleManagement.Models.IT6
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>IT6</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Gbukrs)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Gbukrs)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bukrs)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bukrs)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Pernr)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Pernr)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Subty)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Subty)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BegDa)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BegDa)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EndDa)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EndDa)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Seqnr)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Seqnr)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Aedtm)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Aedtm)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Uname)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Uname)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Stras)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Stras)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Colonia)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Colonia)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Poblac)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Poblac)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Cod_post)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Cod_post)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Munic)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Munic)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Land1)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Land1)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Telnr)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Telnr)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

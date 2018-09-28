@@ -1,0 +1,107 @@
+﻿@model IEnumerable<ASPNETCORERoleManagement.Models.Personal>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Gbukrs)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Bukrs)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Pernr)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Subty)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BegDa)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EndDa)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Seqnr)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Aedtm)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Uname)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Vorna)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nachn)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nach2)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cname)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gbukrs)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bukrs)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pernr)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subty)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BegDa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Seqnr)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Aedtm)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Uname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Vorna)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nachn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nach2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cname)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
