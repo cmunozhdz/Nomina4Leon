@@ -8,40 +8,42 @@ namespace ASPNETCORERoleManagement.Models
 {
     public class Competencias
     {
-        public Competencias() { }
 
-        public Competencias(int Id_Competencia) {
-            this.Id_Competencia = Id_Competencia;
-            
-        }
-
-        public Competencias(int _Id_Competencia,string _Competencia)
+        public Competencias()
         {
-            this.Id_Competencia = _Id_Competencia;
+            /*Constructor competencias.*/
+        }
+        public Competencias(int _Id , string _Competencia )
+        {
+            this.Id_Competencia = _Id;
             this.Competencia = _Competencia;
 
         }
 
-
         [Key]
-        [Display(Name = "Id")]
+        [Display(Name ="Id") ]
         public int Id_Competencia { get; set; }
-        [Key]
+        
+
         [Display(Name = "Competencia")]
         public string Competencia { get; set; }
-        //[Display(Name = "Descripción")]
-        //public string Competencias_Desc { get; set; }
-        //[Key]
-        //public string Competencia { get; set; }
+
         [Display(Name = "Descripción")]
         public string Competencias_Desc { get; set; }
-
         
+        //[Display(Name = "Descripción")]
+        //public string Competencias_Desc { get; set; }
+
+
         [Display(Name = "Generico")]
         public int Generico { get; set; }
+
         [Display(Name = "Sociedad")]
+        [StringLength(4, MinimumLength = 1, ErrorMessage = "Teclee la Compañía")]
+        [RegularExpression(@"^[0-9]+[0-9]*$")]
         public string bukrs { get; set; }
-        [Display(Name = "Grupo Sociedad")]
+        
+        [StringLength(4, MinimumLength = 1, ErrorMessage = "Teclee el Grupo de Compañía")]
         public string gbukrs { get; set; }
 
     }

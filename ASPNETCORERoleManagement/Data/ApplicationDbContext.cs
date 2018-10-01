@@ -16,7 +16,7 @@ namespace ASPNETCORERoleManagement.Data
         {
         }
 
-		public virtual DbSet<MenuMaster> MenuMaster { get; set; }
+        public virtual DbSet<MenuMaster> MenuMaster { get; set; }
         public DbSet<Cat1> Cat1 { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -28,7 +28,7 @@ namespace ASPNETCORERoleManagement.Data
             builder.Entity<ClasedeMedida>()
                 .HasIndex(post => new { post.Gbukrs, post.Bukrs, post.Massg, post.Massn }).IsUnique();
         }
-       
+
         public DbSet<ASPNETCORERoleManagement.Models.Region1> Region1 { get; set; }
         public DbSet<Municipio> Municipios { get; set; }
 
@@ -48,9 +48,9 @@ namespace ASPNETCORERoleManagement.Data
 
         public DbSet<IT2_185_105> IT2_185_105s { get; set; }
         public DbSet<IT16> IT16s { get; set; }
-        public DbSet<IT21> IT21s  { get; set; }
+        public DbSet<IT21> IT21s { get; set; }
         public DbSet<IT369> IT369s { get; set; }
-        public DbSet<IT41> IT41s  { get; set; }
+        public DbSet<IT41> IT41s { get; set; }
         public DbSet<IT7> IT7s { get; set; }
         public DbSet<IT8> IT8s { get; set; }
 
@@ -59,13 +59,8 @@ namespace ASPNETCORERoleManagement.Data
 
         public DbSet<Personal> Personals { get; set; }
         public DbSet<ASPNETCORERoleManagement.Models.PersonalViewModels.Personal_agregarVM> Personal_agregarVM { get; set; }
+        public DbSet<Competencias> Competencias { get; set; }  
 
-        /********************************************
-         * Clemente:2018-09-30 Goal y Metas.
-         * Tablas
-         ***********************************************/
-        //public DbSet<Competencias> Competencias { get; set; }
-       public DbSet<Competencias> Competencias { get; set; }
-
+     
     }
 }
