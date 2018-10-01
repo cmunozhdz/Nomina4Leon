@@ -60,6 +60,12 @@ namespace ASPNETCORERoleManagement.Data
         public DbSet<Personal> Personals { get; set; }
         public DbSet<ASPNETCORERoleManagement.Models.PersonalViewModels.Personal_agregarVM> Personal_agregarVM { get; set; }
 
-     
+        /********************************************
+         * Clemente:2018-09-30 Goal y Metas.
+         * Tablas
+         ***********************************************/
+        //public DbSet<Competencias> Competencias { get; set; }
+       public DbSet<Competencias> Competencias { get; set; }
+
     }
 }
