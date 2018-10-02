@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<ASPNETCORERoleManagement.Models.Competencias>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Competencias Catálogo";
 }
 
-<h2>Index</h2>
+<h2>Competencias</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-success">Nuevo</a>
 </p>
 <table class="table">
     <thead>
@@ -49,9 +49,9 @@
                 @Html.DisplayFor(modelItem => item.gbukrs)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id_Competencia">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id_Competencia">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id_Competencia">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Id_Competencia">Modificar</a> |
+                <a asp-action="Details" asp-route-id="@item.Id_Competencia">Consultar</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id_Competencia">Eliminar</a>
             </td>
         </tr>
 }

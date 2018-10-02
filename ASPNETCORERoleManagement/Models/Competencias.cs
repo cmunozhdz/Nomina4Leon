@@ -23,8 +23,8 @@ namespace ASPNETCORERoleManagement.Models
         [Key]
         [Display(Name ="Id") ]
         public int Id_Competencia { get; set; }
-        
 
+        
         [Display(Name = "Competencia")]
         public string Competencia { get; set; }
 

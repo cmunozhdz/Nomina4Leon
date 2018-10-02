@@ -7,22 +7,78 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ASPNETCORERoleManagement.Data;
 using ASPNETCORERoleManagement.Models;
+using Microsoft.AspNetCore.Http;
+using ASPNETCORERoleManagement.Services;
+
 
 namespace ASPNETCORERoleManagement.Controllers
 {
     public class CompetenciasController : Controller
     {
         private readonly ApplicationDbContext _context;
+       
 
-        public CompetenciasController(ApplicationDbContext context)
+       private readonly IRepositorioBukrs _bukrs;
+        const string SessionGpoCia = "_GpoCia";
+        const string SessionRegresa = "_RegresaA";
+
+        private List<SelectListItem> DaBukrs(string gbukrsp)
+        {
+
+            // traer datos entityfram
+            List<string> bukrslist = new List<string>();
+            IEnumerable<string> bukrslist2 = new List<string>();
+            var items = new List<SelectListItem>();
+            //agregando los items a la lista
+
+            // traer datos entityfram
+            bukrslist = (from cat13 in _context.Cat1
+                         where cat13.Gbukrs == gbukrsp
+                         select cat13.Bukrs).ToList();
+            bukrslist2 = bukrslist.Distinct();
+            items.Add(new SelectListItem
+            {
+                Text = "Selecciona",
+                Value = "Selecciona"
+            });
+
+            foreach (string lista1 in bukrslist2)
+            {
+
+                items.Add(new SelectListItem
+                {
+                    Text = lista1,
+                    Value = lista1
+                });
+            }
+            return (items.ToList());
+            //var items = new List<SelectListItem>();
+        }
+
+
+        public CompetenciasController(ApplicationDbContext context, IRepositorioBukrs bukrs)
         {
             _context = context;
+            _bukrs = bukrs;
+
         }
 
         // GET: Competencias
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Competencias.ToListAsync());
+            ViewBag.GpoCiaG = HttpContext.Session.GetString(SessionGpoCia);
+            if (ViewBag.GpoCiaG==null || ViewBag.GpoCiaG == "")
+            {
+                return View(await _context.Competencias.ToListAsync());
+            }
+                
+            else
+            {
+                var x = HttpContext.Session.GetString(SessionGpoCia);
+                
+                return View(await _context.Competencias.Where(c => c.gbukrs == x).ToListAsync());
+
+            }
         }
 
         // GET: Competencias/Details/5
@@ -46,7 +102,29 @@ namespace ASPNETCORERoleManagement.Controllers
         // GET: Competencias/Create
         public IActionResult Create()
         {
+            
+            ViewBag.GpoCiaG = HttpContext.Session.GetString(SessionGpoCia);
+            if (ViewBag.GpoCiaG == null)
+            {
+                HttpContext.Session.SetString(SessionRegresa, "Create:Competencias");
+                return RedirectToAction("Index", "GpoCiaGlobal");
+
+
+
+            }
+            else
+            {
+                HttpContext.Session.SetString(SessionRegresa, "");
+            }
+
+            var items = new List<SelectListItem>();
+            items = DaBukrs(ViewBag.GpoCiaG);
+            ViewBag.DaBukrs = items.ToList();
+
+
             return View();
+
+
         }
 
         // POST: Competencias/Create
@@ -56,6 +134,13 @@ namespace ASPNETCORERoleManagement.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id_Competencia,Competencia,Competencias_Desc,Generico,bukrs,gbukrs")] Competencias competencias)
         {
+            ViewBag.GpoCiaG = HttpContext.Session.GetString(SessionGpoCia);
+            competencias.gbukrs = competencias.gbukrs.PadLeft(4, '0');
+            //Actualiza el catalogo BUKRS
+            var items = new List<SelectListItem>();
+            items = DaBukrs(ViewBag.GpoCiaG);
+            ViewBag.DaBukrs = items.ToList();
+
             if (ModelState.IsValid)
             {
                 _context.Add(competencias);
