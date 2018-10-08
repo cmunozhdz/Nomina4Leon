@@ -19,15 +19,7 @@ namespace ASPNETCORERoleManagement.Data
         public virtual DbSet<MenuMaster> MenuMaster { get; set; }
         public DbSet<Cat1> Cat1 { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            base.OnModelCreating(builder);
-            // Customize the ASP.NET Identity model and override the defaults if needed.
-            // For example, you can rename the ASP.NET Identity table names and more.
-            // Add your customizations after calling base.OnModelCreating(builder);
-            builder.Entity<ClasedeMedida>()
-                .HasIndex(post => new { post.Gbukrs, post.Bukrs, post.Massg, post.Massn }).IsUnique();
-        }
+        
 
         public DbSet<ASPNETCORERoleManagement.Models.Region1> Region1 { get; set; }
         public DbSet<Municipio> Municipios { get; set; }
@@ -59,8 +51,21 @@ namespace ASPNETCORERoleManagement.Data
 
         public DbSet<Personal> Personals { get; set; }
         public DbSet<ASPNETCORERoleManagement.Models.PersonalViewModels.Personal_agregarVM> Personal_agregarVM { get; set; }
-        public DbSet<Competencias> Competencias { get; set; }  
+        /*Clemente 07/10/18*/
+        public DbSet<Competencias> Competencias { get; set; }
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            // Customize the ASP.NET Identity model and override the defaults if needed.
+            // For example, you can rename the ASP.NET Identity table names and more.
+            // Add your customizations after calling base.OnModelCreating(builder);
+            builder.Entity<ClasedeMedida>()
+                .HasIndex(post => new { post.Gbukrs, post.Bukrs, post.Massg, post.Massn }).IsUnique();
+            builder.Entity<Competencias>().HasKey(c => new { c.Id_Competencia, c.Competencia });
 
-     
+        }
+
     }
 }
+
+

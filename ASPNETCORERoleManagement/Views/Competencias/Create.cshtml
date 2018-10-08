@@ -1,7 +1,7 @@
 ﻿@model ASPNETCORERoleManagement.Models.Competencias
 
 @{
-    ViewData["Title"] = "Agregar Competencias.";
+    ViewData["Title"] = "Create";
 }
 
 <h2>Create</h2>
@@ -12,6 +12,11 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Id_Competencia" class="control-label"></label>
+                <input asp-for="Id_Competencia" class="form-control" />
+                <span asp-validation-for="Id_Competencia" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="Competencia" class="control-label"></label>
                 <input asp-for="Competencia" class="form-control" />
@@ -29,17 +34,19 @@
             </div>
             <div class="form-group">
                 <label asp-for="bukrs" class="control-label"></label>
-                @*<input asp-for="bukrs" class="form-control"
-        asp-items="@(new SelectList(ViewBag.DaBukrs, "Text","value"))"
-        />*@
-                <select asp-for="bukrs" class="form-control"></select>
+                
+                <select asp-for="bukrs" class="form-control"
+                        asp-items="@(new SelectList(ViewBag.Bukrs, "Text", "Value"))"></select>
+
                 <span asp-validation-for="bukrs" class="text-danger"></span>
             </div>
+            
             <div class="form-group">
                 <label asp-for="gbukrs" class="control-label"></label>
-                <input asp-for="gbukrs" class="form-control" />
+                <input asp-for="gbukrs" class="form-control" value="@ViewBag.GpoCiaG" readonly ="readonly"  />
                 <span asp-validation-for="gbukrs" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>

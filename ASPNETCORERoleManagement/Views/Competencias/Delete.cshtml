@@ -12,12 +12,6 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Competencia)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Competencia)
-        </dd>
-        <dt>
             @Html.DisplayNameFor(model => model.Competencias_Desc)
         </dt>
         <dd>
@@ -45,6 +39,7 @@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id_Competencia" />
+        <input type="hidden" asp-for="Competencia" />
         <input type="submit" value="Delete" class="btn btn-default" /> |
         <a asp-action="Index">Back to List</a>
     </form>

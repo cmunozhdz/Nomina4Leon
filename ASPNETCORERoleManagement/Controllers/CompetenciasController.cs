@@ -7,82 +7,53 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ASPNETCORERoleManagement.Data;
 using ASPNETCORERoleManagement.Models;
+
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using ASPNETCORERoleManagement.Services;
+
 
 
 namespace ASPNETCORERoleManagement.Controllers
 {
+    [Authorize(Roles = "Admin")] //Fija los permisos.
     public class CompetenciasController : Controller
     {
         private readonly ApplicationDbContext _context;
-       
-
-       private readonly IRepositorioBukrs _bukrs;
         const string SessionGpoCia = "_GpoCia";
         const string SessionRegresa = "_RegresaA";
 
-        private List<SelectListItem> DaBukrs(string gbukrsp)
-        {
-
-            // traer datos entityfram
-            List<string> bukrslist = new List<string>();
-            IEnumerable<string> bukrslist2 = new List<string>();
-            var items = new List<SelectListItem>();
-            //agregando los items a la lista
-
-            // traer datos entityfram
-            bukrslist = (from cat13 in _context.Cat1
-                         where cat13.Gbukrs == gbukrsp
-                         select cat13.Bukrs).ToList();
-            bukrslist2 = bukrslist.Distinct();
-            items.Add(new SelectListItem
-            {
-                Text = "Selecciona",
-                Value = "Selecciona"
-            });
-
-            foreach (string lista1 in bukrslist2)
-            {
-
-                items.Add(new SelectListItem
-                {
-                    Text = lista1,
-                    Value = lista1
-                });
-            }
-            return (items.ToList());
-            //var items = new List<SelectListItem>();
-        }
-
-
-        public CompetenciasController(ApplicationDbContext context, IRepositorioBukrs bukrs)
+        public CompetenciasController(ApplicationDbContext context)
         {
             _context = context;
-            _bukrs = bukrs;
-
         }
 
         // GET: Competencias
         public async Task<IActionResult> Index()
         {
             ViewBag.GpoCiaG = HttpContext.Session.GetString(SessionGpoCia);
-            if (ViewBag.GpoCiaG==null || ViewBag.GpoCiaG == "")
+            if (ViewBag.GpoCiaG == null || ViewBag.GpoCiaG == "")
             {
-                return View(await _context.Competencias.ToListAsync());
-            }
+                //Obliga a fijar la socidad principal
                 
+                HttpContext.Session.SetString(SessionRegresa, "Index:Competencias");
+                return RedirectToAction("Index", "GpoCiaGlobal");
+            }
             else
             {
+                //Muestra las competencias de la sociedad actual.
                 var x = HttpContext.Session.GetString(SessionGpoCia);
-                
-                return View(await _context.Competencias.Where(c => c.gbukrs == x).ToListAsync());
 
+                return View(await _context.Competencias.Where(c => c.gbukrs == x).ToListAsync());
+                
             }
+            
+
+
         }
 
         // GET: Competencias/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int? id, string strCompetencia)
         {
             if (id == null)
             {
@@ -90,7 +61,7 @@ namespace ASPNETCORERoleManagement.Controllers
             }
 
             var competencias = await _context.Competencias
-                .SingleOrDefaultAsync(m => m.Id_Competencia == id);
+                .SingleOrDefaultAsync(m => m.Id_Competencia == id && m.Competencia == strCompetencia);
             if (competencias == null)
             {
                 return NotFound();
@@ -102,27 +73,22 @@ namespace ASPNETCORERoleManagement.Controllers
         // GET: Competencias/Create
         public IActionResult Create()
         {
-            
+            //return View();
             ViewBag.GpoCiaG = HttpContext.Session.GetString(SessionGpoCia);
             if (ViewBag.GpoCiaG == null)
             {
                 HttpContext.Session.SetString(SessionRegresa, "Create:Competencias");
                 return RedirectToAction("Index", "GpoCiaGlobal");
 
-
-
             }
             else
             {
                 HttpContext.Session.SetString(SessionRegresa, "");
+
+                BukrsRepositorioEF BEF = new BukrsRepositorioEF(_context);
+                ViewBag.Bukrs = BEF.DaBukrs2(ViewBag.GpoCiaG);
+                return View();
             }
-
-            var items = new List<SelectListItem>();
-            items = DaBukrs(ViewBag.GpoCiaG);
-            ViewBag.DaBukrs = items.ToList();
-
-
-            return View();
 
 
         }
@@ -134,13 +100,6 @@ namespace ASPNETCORERoleManagement.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id_Competencia,Competencia,Competencias_Desc,Generico,bukrs,gbukrs")] Competencias competencias)
         {
-            ViewBag.GpoCiaG = HttpContext.Session.GetString(SessionGpoCia);
-            competencias.gbukrs = competencias.gbukrs.PadLeft(4, '0');
-            //Actualiza el catalogo BUKRS
-            var items = new List<SelectListItem>();
-            items = DaBukrs(ViewBag.GpoCiaG);
-            ViewBag.DaBukrs = items.ToList();
-
             if (ModelState.IsValid)
             {
                 _context.Add(competencias);
@@ -151,14 +110,14 @@ namespace ASPNETCORERoleManagement.Controllers
         }
 
         // GET: Competencias/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int? id,string strCompetencia )
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var competencias = await _context.Competencias.SingleOrDefaultAsync(m => m.Id_Competencia == id);
+            var competencias = await _context.Competencias.SingleOrDefaultAsync(m => m.Id_Competencia == id && m.Competencia == strCompetencia  );
             if (competencias == null)
             {
                 return NotFound();
@@ -202,7 +161,7 @@ namespace ASPNETCORERoleManagement.Controllers
         }
 
         // GET: Competencias/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int? id, string strCompetencia)
         {
             if (id == null)
             {
@@ -210,7 +169,7 @@ namespace ASPNETCORERoleManagement.Controllers
             }
 
             var competencias = await _context.Competencias
-                .SingleOrDefaultAsync(m => m.Id_Competencia == id);
+                .SingleOrDefaultAsync(m => m.Id_Competencia == id && m.Competencia == strCompetencia);
             if (competencias == null)
             {
                 return NotFound();
@@ -222,9 +181,9 @@ namespace ASPNETCORERoleManagement.Controllers
         // POST: Competencias/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int id,string strCompetencia)
         {
-            var competencias = await _context.Competencias.SingleOrDefaultAsync(m => m.Id_Competencia == id);
+            var competencias = await _context.Competencias.SingleOrDefaultAsync(m => m.Id_Competencia == id && m.Competencia == strCompetencia);
             _context.Competencias.Remove(competencias);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
