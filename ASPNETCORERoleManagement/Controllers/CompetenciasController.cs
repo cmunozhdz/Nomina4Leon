@@ -103,7 +103,7 @@ namespace ASPNETCORERoleManagement.Controllers
                 {
                     HttpContext.Session.SetString(SessionRegresa, "Create:Competencias");
                     return RedirectToAction("Index", "GpoCiaGlobal");
-
+                    
                 }
                 else {
                     BukrsRepositorioEF BEF = new BukrsRepositorioEF(_context);
@@ -135,13 +135,27 @@ namespace ASPNETCORERoleManagement.Controllers
             {
                 return NotFound();
             }
+                //Valida que no haya registros duplicados y de ser asi provoca un error.
+            ViewBag.GpoCiaG = HttpContext.Session.GetString(SessionGpoCia);
+                if (ViewBag.GpoCiaG == null)
+                {
+                    HttpContext.Session.SetString(SessionRegresa, "Create:Competencias");
+                    return RedirectToAction("Index", "GpoCiaGlobal");
 
-            var competencias = await _context.Competencias.SingleOrDefaultAsync(m => m.Id_Competencia == id);
-            if (competencias == null)
-            {
-                return NotFound();
+                }
+                else
+                {
+                    BukrsRepositorioEF BEF = new BukrsRepositorioEF(_context);
+                    ViewBag.Bukrs = BEF.DaBukrs2(ViewBag.GpoCiaG);
+                    var competencias = await _context.Competencias.SingleOrDefaultAsync(m => m.Id_Competencia == id);
+                    if (competencias == null)
+                    {
+                        return NotFound();
+                    }
+                    return View(competencias);
+                
             }
-            return View(competencias);
+                
         }
 
         // POST: Competencias/Edit/5

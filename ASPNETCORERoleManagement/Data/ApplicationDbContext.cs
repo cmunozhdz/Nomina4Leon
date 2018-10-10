@@ -61,7 +61,7 @@ namespace ASPNETCORERoleManagement.Data
             // Add your customizations after calling base.OnModelCreating(builder);
             builder.Entity<ClasedeMedida>()
                 .HasIndex(post => new { post.Gbukrs, post.Bukrs, post.Massg, post.Massn }).IsUnique();
-            builder.Entity<Competencias>().HasKey(c => new { c.Id_Competencia, c.Competencia });
+            
 
         }
 

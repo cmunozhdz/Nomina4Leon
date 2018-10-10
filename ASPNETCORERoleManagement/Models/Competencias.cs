@@ -26,6 +26,7 @@ namespace ASPNETCORERoleManagement.Models
         [Display(Name = "Generico")]
         public int Generico { get; set; }
 
+        [Required]
         [Display(Name = "Sociedad")]
         [StringLength(4, MinimumLength = 1, ErrorMessage = "Teclee la Compañía")]
         [RegularExpression(@"^[0-9]+[0-9]*$")]
