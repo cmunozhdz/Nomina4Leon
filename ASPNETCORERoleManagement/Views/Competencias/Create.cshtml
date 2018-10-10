@@ -4,23 +4,26 @@
     ViewData["Title"] = "Create";
 }
 
-<h2>Create</h2>
+<h2>Nuevo</h2>
 
 <h4>Competencias</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
+
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+
+                <label asp-for="gbukrs" class="control-label"></label>
+                <input asp-for="gbukrs" class="form-control" value="@ViewBag.GpoCiaG" readonly="readonly" />
+                <span asp-validation-for="gbukrs" class="text-danger"></span>
+            </div>
+
             <div class="form-group">
                 <label asp-for="Id_Competencia" class="control-label"></label>
                 <input asp-for="Id_Competencia" class="form-control" />
                 <span asp-validation-for="Id_Competencia" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Competencia" class="control-label"></label>
-                <input asp-for="Competencia" class="form-control" />
-                <span asp-validation-for="Competencia" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Competencias_Desc" class="control-label"></label>
@@ -34,28 +37,21 @@
             </div>
             <div class="form-group">
                 <label asp-for="bukrs" class="control-label"></label>
-                
                 <select asp-for="bukrs" class="form-control"
                         asp-items="@(new SelectList(ViewBag.Bukrs, "Text", "Value"))"></select>
 
                 <span asp-validation-for="bukrs" class="text-danger"></span>
             </div>
-            
-            <div class="form-group">
-                <label asp-for="gbukrs" class="control-label"></label>
-                <input asp-for="gbukrs" class="form-control" value="@ViewBag.GpoCiaG" readonly ="readonly"  />
-                <span asp-validation-for="gbukrs" class="text-danger"></span>
-            </div>
 
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Guardar" class="btn btn-success" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="btn btn-default">Volver a la lista</a>
 </div>
 
 @section Scripts {

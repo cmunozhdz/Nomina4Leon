@@ -1,27 +1,22 @@
 ﻿@model IEnumerable<ASPNETCORERoleManagement.Models.Competencias>
 
 @{
-    ViewData["Title"] = "Competencias";
+    ViewData["Title"] = "Index";
 }
 
 <h2>Competencias</h2>
 
 <p>
-    <a asp-action="Create">Nuevo</a>
+    <a asp-action="Create" class="btn btn-default">Nuevo</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @*Columan de Botones*@
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Id_Competencia)
+
             </th>
 
-            <th>
-                @Html.DisplayNameFor(model => model.Competencia)
-            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Competencias_Desc)
             </th>
@@ -34,28 +29,15 @@
             <th>
                 @Html.DisplayNameFor(model => model.gbukrs)
             </th>
-
+            <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
             <td>
-
-
-                @Html.ActionLink("Editar", "Edit", new { id = item.Id_Competencia, strCompetencia = item.Competencia }) |
-
-                @Html.ActionLink("Ver", "Details", new { id = item.Id_Competencia, strCompetencia = item.Competencia }) |
-                @Html.ActionLink("Eliminar", "Delete", new { id = item.Id_Competencia, strCompetencia = item.Competencia })
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Id_Competencia)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Competencia)
-            </td>
-
-
             <td>
                 @Html.DisplayFor(modelItem => item.Competencias_Desc)
             </td>
@@ -68,7 +50,11 @@
             <td>
                 @Html.DisplayFor(modelItem => item.gbukrs)
             </td>
-
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id_Competencia">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.Id_Competencia">Visualizar</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id_Competencia">Eliminar</a>
+            </td>
         </tr>
 }
     </tbody>
