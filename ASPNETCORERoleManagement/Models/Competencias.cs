@@ -9,28 +9,20 @@ namespace ASPNETCORERoleManagement.Models
 {
     public class Competencias
     {
+        [Key]
         [Display(Name = "Id")]
-        [Key]
+        
         [Column(Order = 0)]
-        //[DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
-        public int Id_Competencia { get; set; }
+        [Required ]
+        [StringLength(10, MinimumLength = 1, ErrorMessage = "Id. es obligatorio")]
+        public string  Id_Competencia { get; set; }
 
-        [Key]
-        [Column(Order = 1)]
-        [RegularExpression(@"^[0-9]+[0-9]*$")]
-        [Display(Name = "Competencia")]
-        //[Key]
-        //[Column(Order = 2)]
-
-        public string Competencia { get; set; }
-
+        [Required]
         [Display(Name = "Descripción")]
         public string Competencias_Desc { get; set; }
 
 
-
-
-
+        [Required]
         [Display(Name = "Generico")]
         public int Generico { get; set; }
 
@@ -39,6 +31,7 @@ namespace ASPNETCORERoleManagement.Models
         [RegularExpression(@"^[0-9]+[0-9]*$")]
         public string bukrs { get; set; }
 
+        [Required]
         [StringLength(4, MinimumLength = 1, ErrorMessage = "Teclee el Grupo de Compañía")]
         [Display(Name = "Grupo Compañia")]
         public string gbukrs { get; set; }
