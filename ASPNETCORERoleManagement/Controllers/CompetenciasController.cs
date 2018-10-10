@@ -7,53 +7,48 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ASPNETCORERoleManagement.Data;
 using ASPNETCORERoleManagement.Models;
-
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
-using ASPNETCORERoleManagement.Services;
-
-
-
+using ASPNETCORERoleManagement.Services
+;
 namespace ASPNETCORERoleManagement.Controllers
 {
-    [Authorize(Roles = "Admin")] //Fija los permisos.
+    [Authorize(Roles = "Admin")]
     public class CompetenciasController : Controller
     {
         private readonly ApplicationDbContext _context;
-        const string SessionGpoCia = "_GpoCia";
-        const string SessionRegresa = "_RegresaA";
 
         public CompetenciasController(ApplicationDbContext context)
         {
             _context = context;
         }
+        const string SessionGpoCia = "_GpoCia";
+        const string SessionRegresa = "_RegresaA";
 
         // GET: Competencias
         public async Task<IActionResult> Index()
         {
             ViewBag.GpoCiaG = HttpContext.Session.GetString(SessionGpoCia);
+            
             if (ViewBag.GpoCiaG == null || ViewBag.GpoCiaG == "")
             {
-                //Obliga a fijar la socidad principal
-                
                 HttpContext.Session.SetString(SessionRegresa, "Index:Competencias");
                 return RedirectToAction("Index", "GpoCiaGlobal");
+
             }
             else
             {
-                //Muestra las competencias de la sociedad actual.
                 var x = HttpContext.Session.GetString(SessionGpoCia);
-
-                return View(await _context.Competencias.Where(c => c.gbukrs == x).ToListAsync());
                 
+                return View(await _context.Competencias.ToListAsync());
             }
-            
 
+            
 
         }
 
         // GET: Competencias/Details/5
-        public async Task<IActionResult> Details(int? id, string strCompetencia)
+        public async Task<IActionResult> Details(string id)
         {
             if (id == null)
             {
@@ -61,7 +56,7 @@ namespace ASPNETCORERoleManagement.Controllers
             }
 
             var competencias = await _context.Competencias
-                .SingleOrDefaultAsync(m => m.Id_Competencia == id && m.Competencia == strCompetencia);
+                .SingleOrDefaultAsync(m => m.Id_Competencia == id);
             if (competencias == null)
             {
                 return NotFound();
@@ -73,7 +68,7 @@ namespace ASPNETCORERoleManagement.Controllers
         // GET: Competencias/Create
         public IActionResult Create()
         {
-            //return View();
+            //Actualiza el combo de seleccion.
             ViewBag.GpoCiaG = HttpContext.Session.GetString(SessionGpoCia);
             if (ViewBag.GpoCiaG == null)
             {
@@ -90,7 +85,6 @@ namespace ASPNETCORERoleManagement.Controllers
                 return View();
             }
 
-
         }
 
         // POST: Competencias/Create
@@ -98,10 +92,35 @@ namespace ASPNETCORERoleManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id_Competencia,Competencia,Competencias_Desc,Generico,bukrs,gbukrs")] Competencias competencias)
+        public async Task<IActionResult> Create([Bind("Id_Competencia,Competencias_Desc,Generico,bukrs,gbukrs")] Competencias competencias)
         {
+            
+
+            if (_context.Competencias.Any(a => a.Id_Competencia == competencias.Id_Competencia)) {
+                //Valida que no haya registros duplicados y de ser asi provoca un error.
+                ViewBag.GpoCiaG = HttpContext.Session.GetString(SessionGpoCia);
+                if (ViewBag.GpoCiaG == null)
+                {
+                    HttpContext.Session.SetString(SessionRegresa, "Create:Competencias");
+                    return RedirectToAction("Index", "GpoCiaGlobal");
+
+                }
+                else {
+                    BukrsRepositorioEF BEF = new BukrsRepositorioEF(_context);
+                    ViewBag.Bukrs = BEF.DaBukrs2(ViewBag.GpoCiaG);
+                    ModelState.AddModelError("Id_Competencia", "Registro ya existe");
+
+
+                }
+
+                
+
+            }
+
+
             if (ModelState.IsValid)
             {
+
                 _context.Add(competencias);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -110,14 +129,14 @@ namespace ASPNETCORERoleManagement.Controllers
         }
 
         // GET: Competencias/Edit/5
-        public async Task<IActionResult> Edit(int? id,string strCompetencia )
+        public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var competencias = await _context.Competencias.SingleOrDefaultAsync(m => m.Id_Competencia == id && m.Competencia == strCompetencia  );
+            var competencias = await _context.Competencias.SingleOrDefaultAsync(m => m.Id_Competencia == id);
             if (competencias == null)
             {
                 return NotFound();
@@ -130,7 +149,7 @@ namespace ASPNETCORERoleManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id_Competencia,Competencia,Competencias_Desc,Generico,bukrs,gbukrs")] Competencias competencias)
+        public async Task<IActionResult> Edit(string id, [Bind("Id_Competencia,Competencias_Desc,Generico,bukrs,gbukrs")] Competencias competencias)
         {
             if (id != competencias.Id_Competencia)
             {
@@ -161,7 +180,7 @@ namespace ASPNETCORERoleManagement.Controllers
         }
 
         // GET: Competencias/Delete/5
-        public async Task<IActionResult> Delete(int? id, string strCompetencia)
+        public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
             {
@@ -169,7 +188,7 @@ namespace ASPNETCORERoleManagement.Controllers
             }
 
             var competencias = await _context.Competencias
-                .SingleOrDefaultAsync(m => m.Id_Competencia == id && m.Competencia == strCompetencia);
+                .SingleOrDefaultAsync(m => m.Id_Competencia == id);
             if (competencias == null)
             {
                 return NotFound();
@@ -181,15 +200,15 @@ namespace ASPNETCORERoleManagement.Controllers
         // POST: Competencias/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id,string strCompetencia)
+        public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            var competencias = await _context.Competencias.SingleOrDefaultAsync(m => m.Id_Competencia == id && m.Competencia == strCompetencia);
+            var competencias = await _context.Competencias.SingleOrDefaultAsync(m => m.Id_Competencia == id);
             _context.Competencias.Remove(competencias);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CompetenciasExists(int id)
+        private bool CompetenciasExists(string id)
         {
             return _context.Competencias.Any(e => e.Id_Competencia == id);
         }
