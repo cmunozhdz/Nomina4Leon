@@ -1,0 +1,36 @@
+﻿@model ASPNETCORERoleManagement.Models.TipoObj
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TipoObj</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoObjetivo_Desc)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TipoObjetivo_Desc)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.bukrs)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.bukrs)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.gbukrs)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.gbukrs)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id_TipoObj">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

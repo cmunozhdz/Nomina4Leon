@@ -4,6 +4,7 @@
     ViewData["Title"] = "Create";
 }
 
+
 <h2>Nuevo</h2>
 
 <h4>Competencias</h4>
@@ -44,15 +45,23 @@
             </div>
 
             <div class="form-group">
-                <input type="submit" value="Guardar" class="btn btn-success" />
+
             </div>
+
+
+
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index" class="btn btn-default">Volver a la lista</a>
-</div>
+<nav class="navbar navbar-light bg-light">
+ 
+    <input type="submit" value="Guardar" class="btn btn-default btn-success " />
+    <a asp-action="Index" class="btn  btn-link "> Volver a la lista</a>
+
+
+
+</nav>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

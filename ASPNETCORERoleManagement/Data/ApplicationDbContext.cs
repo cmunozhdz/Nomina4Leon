@@ -53,6 +53,10 @@ namespace ASPNETCORERoleManagement.Data
         public DbSet<ASPNETCORERoleManagement.Models.PersonalViewModels.Personal_agregarVM> Personal_agregarVM { get; set; }
         /*Clemente 07/10/18*/
         public DbSet<Competencias> Competencias { get; set; }
+        public DbSet<Conocimientos> Conocimientos { get; set; }
+        public DbSet<TipoObj> TipoObj { get; set; }
+
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

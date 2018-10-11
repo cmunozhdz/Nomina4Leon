@@ -42,7 +42,15 @@
     <h3>Confirme. ¿Está seguro de eliminar?</h3>    
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id_Competencia" />
-        <input type="submit" value="Confirmar" class="btn btn-danger" /> |
-        <a asp-action="Index">Volver a la lista</a>
+        
+        <nav class="navbar navbar-light bg-light">
+
+            <input type="submit" value="Confirmar" class="btn btn-default btn-danger " />
+            <a asp-action="Index" class="btn  btn-link "> Volver a la lista</a>
+
+
+
+        </nav>
+        
     </form>
 </div>
