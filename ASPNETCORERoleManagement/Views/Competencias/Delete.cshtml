@@ -1,7 +1,7 @@
 ﻿@model ASPNETCORERoleManagement.Models.Competencias
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Eliminar";
 }
 
 <h2>Eliminar</h2>
@@ -14,6 +14,17 @@
         <dt>
             @Html.DisplayNameFor(model => model.Id_Competencia )
         </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Id_Competencia )
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bukrs)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.bukrs)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.Competencias_Desc)
         </dt>
@@ -26,31 +37,12 @@
         <dd>
             @Html.DisplayFor(model => model.Generico)
         </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.bukrs)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.bukrs)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.gbukrs)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.gbukrs)
-        </dd>
     </dl>
-    <h3>Confirme. ¿Está seguro de eliminar?</h3>    
+    <h3>Confirme ¿ Esta seguro de eliminar?</h3>
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id_Competencia" />
-        
-        <nav class="navbar navbar-light bg-light">
-
-            <input type="submit" value="Confirmar" class="btn btn-default btn-danger " />
-            <a asp-action="Index" class="btn  btn-link "> Volver a la lista</a>
-
-
-
-        </nav>
-        
+        <input type="hidden" asp-for="gbukrs" />
+        <input type="hidden" asp-for="bukrs" />
+        <input type="submit" value="Confirmar" class="btn btn-danger " /><a asp-action="Index" class="btn btn-default" >Regresar</a>
     </form>
 </div>

@@ -1,9 +1,8 @@
 ﻿@model ASPNETCORERoleManagement.Models.Competencias
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Competencias-Nuevo";
 }
-
 
 <h2>Nuevo</h2>
 
@@ -12,19 +11,25 @@
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
-
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-
                 <label asp-for="gbukrs" class="control-label"></label>
                 <input asp-for="gbukrs" class="form-control" value="@ViewBag.GpoCiaG" readonly="readonly" />
                 <span asp-validation-for="gbukrs" class="text-danger"></span>
+
             </div>
 
             <div class="form-group">
                 <label asp-for="Id_Competencia" class="control-label"></label>
                 <input asp-for="Id_Competencia" class="form-control" />
                 <span asp-validation-for="Id_Competencia" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="bukrs" class="control-label"></label>
+                
+                <select asp-for="bukrs" class="form-control" asp-items="@ViewBag.Bukrs"></select>
+                <span asp-validation-for="bukrs" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Competencias_Desc" class="control-label"></label>
@@ -36,32 +41,24 @@
                 <input asp-for="Generico" class="form-control" />
                 <span asp-validation-for="Generico" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="bukrs" class="control-label"></label>
-                <select asp-for="bukrs" class="form-control"
-                        asp-items="@(new SelectList(ViewBag.Bukrs, "Text", "Value"))"></select>
 
-                <span asp-validation-for="bukrs" class="text-danger"></span>
-            </div>
+            <nav class="navbar navbar-light bg-light">
 
-            <div class="form-group">
-
-            </div>
+                <input type="submit" value="Guardar" class="btn btn-default btn-success " />
+                <a asp-action="Index" class="btn btn-default">Regresar</a>
 
 
 
+            </nav>
         </form>
     </div>
 </div>
 
-<nav class="navbar navbar-light bg-light">
- 
-    <input type="submit" value="Guardar" class="btn btn-default btn-success " />
-    <a asp-action="Index" class="btn  btn-link "> Volver a la lista</a>
+<div>
+    
+   
 
-
-
-</nav>
+</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

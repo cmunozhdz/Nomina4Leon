@@ -1,21 +1,34 @@
 ﻿@model IEnumerable<ASPNETCORERoleManagement.Models.Competencias>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Competencias.";
 }
 
-<h2>Competencias</h2>
+<h2> Competencias|Grupo de Compañia:@ViewBag.GpoCiaG</h2>
 
 <p>
-    <a asp-action="Create" class="btn btn-default">Nuevo</a>
+    <a asp-action="Create">Nuevo</a>
 </p>
+
+@using (Html.BeginForm())
+{
+<p>
+   
+    
+</p>
+}
+
+
 <table class="table">
     <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Id_Competencia)
-
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.bukrs)
+            </th>
+
 
             <th>
                 @Html.DisplayNameFor(model => model.Competencias_Desc)
@@ -23,39 +36,37 @@
             <th>
                 @Html.DisplayNameFor(model => model.Generico)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.bukrs)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.gbukrs)
-            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id_Competencia)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Competencias_Desc)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Generico)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.bukrs)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.gbukrs)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id_Competencia">Editar</a> |
-                <a asp-action="Details" asp-route-id="@item.Id_Competencia">Visualizar</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id_Competencia">Eliminar</a>
-            </td>
-        </tr>
+        @foreach (var item in Model)
+        {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Id_Competencia)
+
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.bukrs)
+
+    </td>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.Competencias_Desc)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Generico)
+    </td>
+    <td>
+        @Html.ActionLink("Editar", "Edit", new { Id = item.Id_Competencia, gbukrs = item.gbukrs, Bukrs = item.bukrs      /* id=item.PrimaryKey */ }) |
+        @Html.ActionLink("Detalles", "Details", new { Id = item.Id_Competencia, gbukrs = item.gbukrs, Bukrs = item.bukrs /* id=item.PrimaryKey */ }) |
+        @Html.ActionLink("Eliminar", "Delete", new { Id = item.Id_Competencia, gbukrs = item.gbukrs, Bukrs = item.bukrs /* id=item.PrimaryKey */ })
+        
+
+
+    </td>
+</tr>
 }
     </tbody>
 </table>

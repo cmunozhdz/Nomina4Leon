@@ -17,6 +17,21 @@ namespace ASPNETCORERoleManagement.Models
         [StringLength(10, MinimumLength = 1, ErrorMessage = "Id. es obligatorio")]
         public string  Id_Competencia { get; set; }
 
+        [Key]
+        [Required]
+        [StringLength(4, MinimumLength = 1, ErrorMessage = "Teclee el Grupo de Compañía")]
+        [Display(Name = "Grupo Compañia")]
+        public string gbukrs { get; set; }
+
+        [Key]
+        [Required]
+        [Display(Name = "Sociedad")]
+        [StringLength(4, MinimumLength = 1, ErrorMessage = "Teclee la Compañía")]
+        [RegularExpression(@"^[0-9]+[0-9]*$")]
+        public string bukrs { get; set; }
+
+
+
         [Required]
         [Display(Name = "Descripción")]
         public string Competencias_Desc { get; set; }
@@ -26,16 +41,7 @@ namespace ASPNETCORERoleManagement.Models
         [Display(Name = "Generico")]
         public int Generico { get; set; }
 
-        [Required]
-        [Display(Name = "Sociedad")]
-        [StringLength(4, MinimumLength = 1, ErrorMessage = "Teclee la Compañía")]
-        [RegularExpression(@"^[0-9]+[0-9]*$")]
-        public string bukrs { get; set; }
-
-        [Required]
-        [StringLength(4, MinimumLength = 1, ErrorMessage = "Teclee el Grupo de Compañía")]
-        [Display(Name = "Grupo Compañia")]
-        public string gbukrs { get; set; }
-
+        
+        
     }
 }

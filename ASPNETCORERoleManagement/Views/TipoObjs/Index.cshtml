@@ -1,26 +1,30 @@
 ﻿@model IEnumerable<ASPNETCORERoleManagement.Models.TipoObj>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Tipo de Objetivos";
 }
 
-<h2>Index</h2>
+<h2>Tipo de objetivos|Grupo de Compañia:@ViewBag.GpoCiaG</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Nuevo</a>
 </p>
 <table class="table">
     <thead>
         <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.TipoObjetivo_Desc)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.bukrs)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.gbukrs)
-                </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoObjId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.gbukrs)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.bukrs)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -28,18 +32,22 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.TipoObjetivo_Desc)
+                @Html.DisplayFor(modelItem => item.TipoObjId )
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.gbukrs)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.bukrs)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.gbukrs)
+                @Html.DisplayFor(modelItem => item.Descripcion)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id_TipoObj">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id_TipoObj">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id_TipoObj">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.TipoObjId">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.TipoObjId">Detalles</a> |
+                <a asp-action="Delete" asp-route-id="@item.TipoObjId">Eliminar</a>
             </td>
         </tr>
 }

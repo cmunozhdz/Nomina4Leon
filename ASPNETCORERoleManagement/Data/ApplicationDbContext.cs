@@ -53,7 +53,7 @@ namespace ASPNETCORERoleManagement.Data
         public DbSet<ASPNETCORERoleManagement.Models.PersonalViewModels.Personal_agregarVM> Personal_agregarVM { get; set; }
         /*Clemente 07/10/18*/
         public DbSet<Competencias> Competencias { get; set; }
-        public DbSet<Conocimientos> Conocimientos { get; set; }
+        
         public DbSet<TipoObj> TipoObj { get; set; }
 
 
@@ -65,7 +65,11 @@ namespace ASPNETCORERoleManagement.Data
             // Add your customizations after calling base.OnModelCreating(builder);
             builder.Entity<ClasedeMedida>()
                 .HasIndex(post => new { post.Gbukrs, post.Bukrs, post.Massg, post.Massn }).IsUnique();
-            
+
+            builder.Entity<Competencias>().HasKey(c => new { c.Id_Competencia,c.gbukrs ,c.bukrs });
+
+                
+
 
         }
 
