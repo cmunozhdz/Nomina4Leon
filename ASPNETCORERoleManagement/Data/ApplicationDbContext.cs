@@ -56,6 +56,9 @@ namespace ASPNETCORERoleManagement.Data
         
         public DbSet<TipoObj> TipoObj { get; set; }
 
+        public DbSet<Objetivo> Objetivo { get; set; }
+
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

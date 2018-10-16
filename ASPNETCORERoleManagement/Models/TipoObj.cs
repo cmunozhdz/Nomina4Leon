@@ -4,10 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-
+using Microsoft.AspNetCore.Mvc.Rendering;
+using ASPNETCORERoleManagement.Data;
 
 namespace ASPNETCORERoleManagement.Models
 {
+
     public class TipoObj
     {
         [Key]
@@ -39,4 +41,23 @@ namespace ASPNETCORERoleManagement.Models
         public string Descripcion { get; set; }
 
     }
+    public class GetTipoObjDb
+    {
+
+        public TipoObj GetItem(string Id,ApplicationDbContext dbContext ) {
+            if (Id==null)
+            {
+                return null;
+
+            }
+            TipoObj SelectItem = dbContext.TipoObj.Find(Id);
+          
+            return SelectItem;
+
+        }
+
+    }
+    
+
+     
 }

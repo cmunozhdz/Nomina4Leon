@@ -29,27 +29,28 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.TipoObjId )
-            </td>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TipoObjId)
+                </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.gbukrs)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.bukrs)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descripcion)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.TipoObjId">Editar</a> |
-                <a asp-action="Details" asp-route-id="@item.TipoObjId">Detalles</a> |
-                <a asp-action="Delete" asp-route-id="@item.TipoObjId">Eliminar</a>
-            </td>
-        </tr>
-}
+                <td>
+                    @Html.DisplayFor(modelItem => item.gbukrs)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.bukrs)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.TipoObjId">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.TipoObjId">Detalles</a> |
+                    <a asp-action="Delete" asp-route-id="@item.TipoObjId">Eliminar</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

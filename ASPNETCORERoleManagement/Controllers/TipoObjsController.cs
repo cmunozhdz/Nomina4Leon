@@ -12,15 +12,16 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
 using ASPNETCORERoleManagement.Services;
 
-namespace ASPNETCORERoleManagement
+
+namespace ASPNETCORERoleManagement.Controllers
 {
     [Authorize(Roles = "Admin")] //Fija los permisos.
     public class TipoObjsController : Controller
     {
+        private readonly ApplicationDbContext _context;
         const string SessionGpoCia = "_GpoCia";
         const string SessionRegresa = "_RegresaA";
 
-        private readonly ApplicationDbContext _context;
 
         public TipoObjsController(ApplicationDbContext context)
         {
@@ -44,14 +45,12 @@ namespace ASPNETCORERoleManagement
                 //Muestra las competencias de la sociedad actual.
                 var x = HttpContext.Session.GetString(SessionGpoCia);
                 // GpoCiaCtrl = HttpContext.Session.GetString(SessionGpoCia);
-                  
-                return View(await _context.TipoObj.Where(a => a.gbukrs == x).ToListAsync());
+
+                return View(await _context.TipoObj.Where(c => c.gbukrs == x).ToListAsync());
 
             }
 
 
-
-            
 
         }
 
@@ -69,6 +68,7 @@ namespace ASPNETCORERoleManagement
             {
                 return NotFound();
             }
+            ViewBag.TipoObjID = id;
 
             return View(tipoObj);
         }
@@ -77,11 +77,13 @@ namespace ASPNETCORERoleManagement
         public IActionResult Create()
         {
             ViewBag.GpoCiaG = HttpContext.Session.GetString(SessionGpoCia);
-            if (ViewBag.GpoCiaG == null)
-            {
-                HttpContext.Session.SetString(SessionRegresa, "Create:TipoObjs");
-                return RedirectToAction("Index", "GpoCiaGlobal");
 
+            if (ViewBag.GpoCiaG == null || ViewBag.GpoCiaG == "")
+            {
+                //Obliga a fijar la socidad principal
+
+                HttpContext.Session.SetString(SessionRegresa, "Index:TipoObjs");
+                return RedirectToAction("Index", "GpoCiaGlobal");
             }
             else
             {
@@ -89,11 +91,12 @@ namespace ASPNETCORERoleManagement
 
                 BukrsRepositorioEF BEF = new BukrsRepositorioEF(_context);
                 ViewBag.Bukrs = BEF.DaBukrs2(ViewBag.GpoCiaG);
+
                 return View();
             }
 
-
             
+
         }
 
         // POST: TipoObjs/Create
@@ -103,13 +106,11 @@ namespace ASPNETCORERoleManagement
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("TipoObjId,gbukrs,bukrs,Descripcion")] TipoObj tipoObj)
         {
-            //Valida que no haya registros duplicados
-            if (_context.TipoObj.Any(c => c.TipoObjId ==tipoObj.TipoObjId))
+            if (_context.TipoObj.Any(a => a.gbukrs == tipoObj.gbukrs && a.bukrs == tipoObj.bukrs && a.TipoObjId == tipoObj.TipoObjId))
             {
-                //el registro ya existe provoca un error en la validación
-                ModelState.AddModelError("TipoObjId", "El registro ya existe.");
+                
+                ModelState.AddModelError("TipoObjId", "El registro ya existe");
                 ViewBag.GpoCiaG = HttpContext.Session.GetString(SessionGpoCia);
-
                 if (ViewBag.GpoCiaG == null)
                 {
                     HttpContext.Session.SetString(SessionRegresa, "Create:TipoObjs");
@@ -128,7 +129,6 @@ namespace ASPNETCORERoleManagement
             }
             else
             {
-                //Envia los cambios
                 if (ModelState.IsValid)
                 {
                     _context.Add(tipoObj);
@@ -150,19 +150,21 @@ namespace ASPNETCORERoleManagement
             }
 
             ViewBag.GpoCiaG = HttpContext.Session.GetString(SessionGpoCia);
-            if (ViewBag.GpoCiaG == null)
+
+            if (ViewBag.GpoCiaG == null || ViewBag.GpoCiaG == "")
             {
+                //Obliga a fijar la socidad principal
+
                 HttpContext.Session.SetString(SessionRegresa, "Edit:TipoObjs");
                 return RedirectToAction("Index", "GpoCiaGlobal");
-
             }
             else
             {
                 HttpContext.Session.SetString(SessionRegresa, "");
-
+                /*Actualiza la lista de Sociedades*/
                 BukrsRepositorioEF BEF = new BukrsRepositorioEF(_context);
                 ViewBag.Bukrs = BEF.DaBukrs2(ViewBag.GpoCiaG);
-                
+
                 var tipoObj = await _context.TipoObj.SingleOrDefaultAsync(m => m.TipoObjId == id);
                 if (tipoObj == null)
                 {
@@ -171,6 +173,8 @@ namespace ASPNETCORERoleManagement
                 return View(tipoObj);
             }
 
+            
+            
         }
 
         // POST: TipoObjs/Edit/5
