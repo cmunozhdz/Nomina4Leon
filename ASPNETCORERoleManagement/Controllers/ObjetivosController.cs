@@ -8,11 +8,17 @@ using Microsoft.EntityFrameworkCore;
 using ASPNETCORERoleManagement.Data;
 using ASPNETCORERoleManagement.Models;
 
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
+using ASPNETCORERoleManagement.Services;
+
+
 namespace ASPNETCORERoleManagement.Controllers
 {
     public class ObjetivosController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private const string  SessionId= "ObjetivoId";
 
         public ObjetivosController(ApplicationDbContext context)
         {
@@ -20,10 +26,17 @@ namespace ASPNETCORERoleManagement.Controllers
         }
 
         // GET: Objetivos
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string id)
         {
-            var applicationDbContext = _context.Objetivo.Include(o => o.TipoObj);
-            return View(await applicationDbContext.ToListAsync());
+            if (id == null) {
+                return NotFound();
+            }
+            ViewBag.TipoObjId = id;
+
+            return View(await _context.Objetivo.Where(c => c.TipoObjId == id).ToListAsync());
+
+
+            
         }
 
         // GET: Objetivos/Details/5
@@ -35,7 +48,6 @@ namespace ASPNETCORERoleManagement.Controllers
             }
 
             var objetivo = await _context.Objetivo
-                .Include(o => o.TipoObj)
                 .SingleOrDefaultAsync(m => m.IdObjetivo == id);
             if (objetivo == null)
             {
@@ -46,10 +58,27 @@ namespace ASPNETCORERoleManagement.Controllers
         }
 
         // GET: Objetivos/Create
-        public IActionResult Create()
+        public IActionResult Create(string id)
         {
-            ViewData["TipoObjId"] = new SelectList(_context.TipoObj, "TipoObjId", "TipoObjId");
-            return View();
+            if (id == null) {
+                return NotFound();
+            }
+            //ViewBag.GpoCiaG = HttpContext.Session.GetString(SessionGpoCia);
+            
+            TipoObj SelectItem= new GetTipoObjDb().GetItem(id, _context);
+            if (SelectItem == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                ViewBag.TipoObjetivo = SelectItem.TipoObjId;
+                ViewBag.DescObjetivo = SelectItem.TipoObjId + ':'+ SelectItem.Descripcion;
+                HttpContext.Session.SetString(SessionId, id);
+                return View();
+            }
+                
+            
         }
 
         // POST: Objetivos/Create
@@ -57,18 +86,35 @@ namespace ASPNETCORERoleManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdObjetivo,Descripcion,Inicio,Fin,TipoObjId")] Objetivo objetivo)
+        public async Task<IActionResult> Create([Bind("IdObjetivo,Descipcion,Inicio,Fin,TipoObjId")] Objetivo objetivo)
         {
+            //Valida que no haya duplicados.
+            if (_context.Objetivo.Any(a => a.IdObjetivo  == objetivo.IdObjetivo ))
+
+            {
+
+                ModelState.AddModelError("IdObjetivo", "El registro ya existe");
+                TipoObj SelectItem = new GetTipoObjDb().GetItem(objetivo.TipoObjId , _context);
+                if (SelectItem == null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    ViewBag.TipoObjetivo = SelectItem.TipoObjId;
+                    ViewBag.DescObjetivo = SelectItem.Descripcion; 
+                    return View();
+                }
+
+            }
 
 
             if (ModelState.IsValid)
             {
-
                 _context.Add(objetivo);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["TipoObjId"] = new SelectList(_context.TipoObj, "TipoObjId", "TipoObjId", objetivo.TipoObjId);
             return View(objetivo);
         }
 
@@ -85,7 +131,6 @@ namespace ASPNETCORERoleManagement.Controllers
             {
                 return NotFound();
             }
-            ViewData["TipoObjId"] = new SelectList(_context.TipoObj, "TipoObjId", "TipoObjId", objetivo.TipoObjId);
             return View(objetivo);
         }
 
@@ -94,7 +139,7 @@ namespace ASPNETCORERoleManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("IdObjetivo,Descripcion,Inicio,Fin,TipoObjId")] Objetivo objetivo)
+        public async Task<IActionResult> Edit(string id, [Bind("IdObjetivo,Descipcion,Inicio,Fin,TipoObjId")] Objetivo objetivo)
         {
             if (id != objetivo.IdObjetivo)
             {
@@ -121,7 +166,6 @@ namespace ASPNETCORERoleManagement.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["TipoObjId"] = new SelectList(_context.TipoObj, "TipoObjId", "TipoObjId", objetivo.TipoObjId);
             return View(objetivo);
         }
 
@@ -134,7 +178,6 @@ namespace ASPNETCORERoleManagement.Controllers
             }
 
             var objetivo = await _context.Objetivo
-                .Include(o => o.TipoObj)
                 .SingleOrDefaultAsync(m => m.IdObjetivo == id);
             if (objetivo == null)
             {
