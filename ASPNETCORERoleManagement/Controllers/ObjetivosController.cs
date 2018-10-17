@@ -20,11 +20,39 @@ namespace ASPNETCORERoleManagement.Controllers
         }
 
         // GET: Objetivos
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string id, string TipoObjId)
         {
-            var applicationDbContext = _context.Objetivo.Include(o => o.TipoObj);
-            return View(await applicationDbContext.ToListAsync());
+            ViewBag.TipoObjId = TipoObjId;
+            ViewBag.id = id;
+
+
+            if (TipoObjId == null && id == null )
+            {
+                var applicationDbContext = _context.Objetivo.Include(o => o.TipoObj);
+                return View(await applicationDbContext.ToListAsync());
+
+            }
+            else if (TipoObjId == null && id != null) {
+
+                var applicationDbContext = _context.Objetivo.Include(o => o.TipoObj).Where(c=>c.IdObjetivo == id)  ;
+                return View(await applicationDbContext.ToListAsync());
+
+            }
+            else if (TipoObjId!=null && id == null)
+            {
+                var applicationDbContext = _context.Objetivo.Include(o => o.TipoObj).Where(c => c.TipoObjId   == TipoObjId);
+                return View(await applicationDbContext.ToListAsync());
+            }
+            else
+            {
+                var applicationDbContext = _context.Objetivo.Include(o => o.TipoObj).Where(c => c.IdObjetivo == id && c.TipoObjId==TipoObjId  );
+                return View(await applicationDbContext.ToListAsync());
+            }
+            
+
         }
+
+
 
         // GET: Objetivos/Details/5
         public async Task<IActionResult> Details(string id)
@@ -46,9 +74,11 @@ namespace ASPNETCORERoleManagement.Controllers
         }
 
         // GET: Objetivos/Create
-        public IActionResult Create()
+        public IActionResult Create(string id)
         {
-            ViewData["TipoObjId"] = new SelectList(_context.TipoObj, "TipoObjId", "TipoObjId");
+            //ViewData["TipoObjId"] = new SelectList(_context.TipoObj, "TipoObjId", "TipoObjId");
+            ViewBag.TipoObjId = id;
+            
             return View();
         }
 

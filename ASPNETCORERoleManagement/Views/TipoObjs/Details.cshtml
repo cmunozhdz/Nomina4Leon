@@ -7,9 +7,10 @@
 <ul class="nav nav-tabs">
     <li role="presentation" class="active"><a href="#">Detalles</a></li>
     <li role="presentation">
+        @*asp-route-TipoObjId:Forza el parametro para hacer la busqueda por Tipo de Objetivo*@
         <a asp-controller="Objetivos"
            asp-action="Index"
-           asp-route-id="@ViewBag.TipoObjID">
+           asp-route-TipoObjId="@ViewBag.TipoObjID">
             Objetivos
         </a>
 

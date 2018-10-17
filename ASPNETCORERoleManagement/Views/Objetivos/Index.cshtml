@@ -1,26 +1,46 @@
 ﻿@model IEnumerable<ASPNETCORERoleManagement.Models.Objetivo>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Objetivos";
 }
 
-<h2>Index</h2>
+<ul class="nav nav-tabs">
+
+    <li role="presentation" >
+        @*asp-route-TipoObjId:Forza el parametro para hacer la busqueda por Tipo de Objetivo*@
+        <a asp-controller="TipoObjs"
+           asp-action="Details"
+           asp-route-id="@ViewBag.TipoObjID" 
+           >
+            Detalles
+        </a>
+
+    </li>
+    <li role="presentation" class="active"><a href="#">Objetivos</a></li>
+    <li role="presentation"><a href="#">Messages</a></li>
+</ul>
+
+
+<h2>Objetivos</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" asp-route-id="@ViewBag.TipoObjId" >Create New</a>
 </p>
 <table class="table">
     <thead>
         <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Descripcion)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Inicio)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Fin)
-                </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdObjetivo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Inicio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fin)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.TipoObj)
             </th>
@@ -28,26 +48,32 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descripcion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Inicio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fin)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TipoObj.TipoObjId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.IdObjetivo">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdObjetivo">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdObjetivo">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdObjetivo)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Inicio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fin)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TipoObj.TipoObjId)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.IdObjetivo">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.IdObjetivo">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.IdObjetivo">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
