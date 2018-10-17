@@ -38,6 +38,7 @@ namespace ASPNETCORERoleManagement.Models
 
 
         [Required]
+        [Display(Name = "Tipo Objetivo")]
         [StringLength(10, MinimumLength = 1, ErrorMessage = "Formato inválido")]
         public String TipoObjId { get; set; }
 

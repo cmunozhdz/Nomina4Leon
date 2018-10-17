@@ -1,10 +1,24 @@
 ﻿@model ASPNETCORERoleManagement.Models.Objetivo
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalles";
 }
+<ul class="nav nav-tabs">
 
-<h2>Details</h2>
+    <li role="presentation">
+        @*asp-route-TipoObjId:Forza el parametro para hacer la busqueda por Tipo de Objetivo*@
+        <a asp-controller="TipoObjs"
+           asp-action="Details"
+           asp-route-id="@ViewBag.TipoObjID">
+            Detalles
+        </a>
+
+    </li>
+    <li role="presentation" class="active"><a href="#">Objetivos</a></li>
+    <li role="presentation"><a href="#">Messages</a></li>
+</ul>
+
+<h2>Detalles</h2>
 
 <div>
     <h4>Objetivo</h4>
@@ -37,6 +51,7 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.IdObjetivo">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.IdObjetivo">Editar</a> |
+    <a asp-action="Delete" asp-route-id="@Model.IdObjetivo">Eliminar</a> |
+    <a asp-action="Index" asp-route-TipoObjId="@Model.TipoObj.TipoObjId" class="btn btn-default">cancelar</a>
 </div>

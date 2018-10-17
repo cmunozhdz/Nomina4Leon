@@ -3,6 +3,20 @@
 @{
     ViewData["Title"] = "Create";
 }
+<ul class="nav nav-tabs">
+
+    <li role="presentation">
+        @*asp-route-TipoObjId:Forza el parametro para hacer la busqueda por Tipo de Objetivo*@
+        <a asp-controller="TipoObjs"
+           asp-action="Details"
+           asp-route-id="@ViewBag.TipoObjID">
+            Detalles
+        </a>
+
+    </li>
+    <li role="presentation" class="active"><a href="#">Objetivos</a></li>
+    <li role="presentation"><a href="#">Messages</a></li>
+</ul>
 
 <h2>Create</h2>
 
@@ -37,7 +51,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="TipoObjId" class="control-label"></label>
-                <input asp-for="TipoObjId" class="form-control" value="@ViewBag.TipoObjId" />
+                <input asp-for="TipoObjId" class="form-control" value="@ViewBag.TipoObjId" readonly="true" />
 
                 <span asp-validation-for="TipoObjId" class="text-danger"></span>
 
@@ -52,7 +66,7 @@
 </div>
 
 <div>
-    
+
 </div>
 
 @section Scripts {

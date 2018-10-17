@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ASPNETCORERoleManagement.Data;
 using ASPNETCORERoleManagement.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ASPNETCORERoleManagement.Controllers
 {
+    [Authorize(Roles = "Admin")] //Fija los permisos.
     public class ObjetivosController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -69,6 +71,7 @@ namespace ASPNETCORERoleManagement.Controllers
             {
                 return NotFound();
             }
+            ViewBag.TipoObjId = objetivo.TipoObjId;
 
             return View(objetivo);
         }
@@ -89,14 +92,37 @@ namespace ASPNETCORERoleManagement.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("IdObjetivo,Descripcion,Inicio,Fin,TipoObjId")] Objetivo objetivo)
         {
+            if (ModelState.IsValid)
+            {
+                    if (objetivo.Fin <= objetivo.Inicio)
+                {
+                    ModelState.AddModelError("Fin", "La fecha inicial debe ser previa a la final.");
+                    ViewBag.TipoObjId = objetivo.TipoObjId;
+
+                    return View();
+                }
+
+            }
+                if (ModelState.IsValid)
+            {
+                //Valida que la fecha inicial y 
+               
+                if (_context.Objetivo.Any(c => c.IdObjetivo == objetivo.IdObjetivo)) {
+                    ModelState.AddModelError("IdObjetivo", "Ya existe un objetivo con este Id");
+                    ViewBag.TipoObjId = objetivo.TipoObjId ;
+
+                    return View();
+                }
+            }
 
 
             if (ModelState.IsValid)
             {
 
+
                 _context.Add(objetivo);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index), new { @TipoObjId = objetivo.TipoObjId });
             }
             ViewData["TipoObjId"] = new SelectList(_context.TipoObj, "TipoObjId", "TipoObjId", objetivo.TipoObjId);
             return View(objetivo);
@@ -115,7 +141,9 @@ namespace ASPNETCORERoleManagement.Controllers
             {
                 return NotFound();
             }
-            ViewData["TipoObjId"] = new SelectList(_context.TipoObj, "TipoObjId", "TipoObjId", objetivo.TipoObjId);
+            ViewBag.TipoObjId = objetivo.TipoObjId; 
+
+            //ViewData["TipoObjId"] = new SelectList(_context.TipoObj, "TipoObjId", "TipoObjId", objetivo.TipoObjId);
             return View(objetivo);
         }
 
@@ -129,6 +157,18 @@ namespace ASPNETCORERoleManagement.Controllers
             if (id != objetivo.IdObjetivo)
             {
                 return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                if (objetivo.Fin <= objetivo.Inicio)
+                {
+                    ModelState.AddModelError("Fin", "La fecha inicial debe ser previa a la final.");
+                    ViewBag.TipoObjId = objetivo.TipoObjId;
+
+                    return View();
+                }
+
             }
 
             if (ModelState.IsValid)
@@ -149,9 +189,11 @@ namespace ASPNETCORERoleManagement.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                
+                return RedirectToAction(nameof(Index), new { @TipoObjId = objetivo.TipoObjId });
             }
-            ViewData["TipoObjId"] = new SelectList(_context.TipoObj, "TipoObjId", "TipoObjId", objetivo.TipoObjId);
+            //ViewData["TipoObjId"] = new SelectList(_context.TipoObj, "TipoObjId", "TipoObjId", objetivo.TipoObjId);
+            ViewBag.TipoObjId = objetivo.TipoObjId;
             return View(objetivo);
         }
 
@@ -170,7 +212,7 @@ namespace ASPNETCORERoleManagement.Controllers
             {
                 return NotFound();
             }
-
+            ViewBag.TipoObjId = objetivo.TipoObjId;
             return View(objetivo);
         }
 
@@ -182,7 +224,7 @@ namespace ASPNETCORERoleManagement.Controllers
             var objetivo = await _context.Objetivo.SingleOrDefaultAsync(m => m.IdObjetivo == id);
             _context.Objetivo.Remove(objetivo);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Index), new { @TipoObjId = objetivo.TipoObjId });
         }
 
         private bool ObjetivoExists(string id)
