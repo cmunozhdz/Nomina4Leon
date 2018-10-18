@@ -1,0 +1,48 @@
+﻿@model ASPNETCORERoleManagement.Models.Tareas
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Tareas</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TareasDesc)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TareasDesc)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TareasFechaRegistro)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TareasFechaRegistro)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TareasFechaFinDeseado)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TareasFechaFinDeseado)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TareasFechaFinReal)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TareasFechaFinReal)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Objetivo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Objetivo.IdObjetivo)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.TareaId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

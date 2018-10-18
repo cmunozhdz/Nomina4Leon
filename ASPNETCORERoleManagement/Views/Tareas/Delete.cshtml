@@ -1,0 +1,51 @@
+﻿@model ASPNETCORERoleManagement.Models.Tareas
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Tareas</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TareasDesc)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TareasDesc)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TareasFechaRegistro)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TareasFechaRegistro)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TareasFechaFinDeseado)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TareasFechaFinDeseado)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TareasFechaFinReal)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TareasFechaFinReal)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Objetivo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Objetivo.IdObjetivo)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="TareaId" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>
