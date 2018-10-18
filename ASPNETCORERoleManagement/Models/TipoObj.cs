@@ -13,7 +13,7 @@ namespace ASPNETCORERoleManagement.Models
     public class TipoObj
     {
         [Key]
-        [Display(Name = "Id")]
+        [Display(Name = "Tipo Objetivo Id")]
         
         [Column(Order = 0)]
         [Required]
