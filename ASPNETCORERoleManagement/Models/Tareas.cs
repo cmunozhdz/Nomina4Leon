@@ -15,13 +15,13 @@ namespace ASPNETCORERoleManagement.Models
 
         [Key]
         [Display(Name = "Id Tarea")]
-        [Required]
+        [Required (ErrorMessage = "Requerido")]
         [StringLength(10, MinimumLength = 1, ErrorMessage = "Formato inválido")]
         public string TareaId { get; set; }
 
  
         [Display(Name = "Descripción")]
-        [Required]
+        [Required(ErrorMessage = "Requerido")]
         [MaxLength(2000)]
 
         public string TareasDesc { get; set; }
@@ -60,7 +60,7 @@ namespace ASPNETCORERoleManagement.Models
 
 
         [Display(Name = "Id Objetivo")]
-        [Required]
+        [Required(ErrorMessage = "Requerido")]
         [StringLength(10, MinimumLength = 1, ErrorMessage = "Formato inválido")]
 
         public string IdObjetivo { get; set; }

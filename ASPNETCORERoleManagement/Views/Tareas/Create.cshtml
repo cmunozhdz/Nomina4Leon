@@ -1,53 +1,75 @@
 ﻿@model ASPNETCORERoleManagement.Models.Tareas
 
-@{
-    ViewData["Title"] = "Create";
-}
+    @{
+        ViewData["Title"] = "Create";
+    }
 
-<h2>Create</h2>
+    <h2>Create</h2>
 
-<h4>Tareas</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="IdObjetivo" class="control-label"></label>
-                <select asp-for="IdObjetivo" class ="form-control" asp-items="ViewBag.IdObjetivo"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="TareasDesc" class="control-label"></label>
-                <input asp-for="TareasDesc" class="form-control"  />
-                <span asp-validation-for="TareasDesc" class="text-danger" ></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TareasFechaRegistro" class="control-label"></label>
-                @Html.TextBoxFor(model => model.TareasFechaRegistro, new { @Value = @DateTime.Now })
-                
-                <span asp-validation-for="TareasFechaRegistro" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TareasFechaFinDeseado" class="control-label"></label>
-                <input asp-for="TareasFechaFinDeseado" class="form-control" />
-                <span asp-validation-for="TareasFechaFinDeseado" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TareasFechaFinReal" class="control-label"></label>
-                <input asp-for="TareasFechaFinReal" class="form-control" />
-                <span asp-validation-for="TareasFechaFinReal" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </form>
+    <h4>Tareas</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <ul>
+
+                    @if (ViewBag.Errors != null)
+                    {
+                        <p>@ViewBag.Errors</p>
+                    }
+                    }
+
+
+                </ul>
+                @Html.ValidationSummary(true, "Hay varios errores:")
+                <div class="form-group">
+                    <label asp-for="TareaId" class="control-label"></label>
+                    <input asp-for="TareaId" class="form-control" />
+                    <span asp-validation-for="TareaId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="IdObjetivo" class="control-label"></label>
+                    <select asp-for="IdObjetivo" class="form-control" asp-items="ViewBag.IdObjetivo"></select>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="TareasFechaRegistro" class="control-label"></label>
+                    @Html.TextBoxFor(model => model.TareasFechaRegistro, new { @Value = @DateTime.Now })
+
+                    <span asp-validation-for="TareasFechaRegistro" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="TareasFechaFinDeseado" class="control-label"></label>
+                    <input asp-for="TareasFechaFinDeseado" class="form-control" />
+                    <span asp-validation-for="TareasFechaFinDeseado" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="TareasFechaFinReal" class="control-label"></label>
+                    <input asp-for="TareasFechaFinReal" class="form-control" />
+                    <span asp-validation-for="TareasFechaFinReal" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="TareasDesc" class="control-label"></label>
+
+                    @Html.TextArea("TareasDesc", null, new { @class = "form-control" })
+                    <span asp-validation-for="TareasDesc" class="text-danger"></span>
+
+
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }

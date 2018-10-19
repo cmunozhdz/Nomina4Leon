@@ -65,6 +65,19 @@ namespace ASPNETCORERoleManagement.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            else {
+                ViewBag.Errors = "";
+
+                foreach (var modelError in ModelState)
+                {
+                    string propertyName = modelError.Key;
+                    if (modelError.Value.Errors.Count > 0)
+                    {
+                        ViewBag.Errors = ViewBag.Errors + "**** " + propertyName + "|" + modelError.Value.Errors.Count;
+
+                    }
+                }
+            }
             ViewData["IdObjetivo"] = new SelectList(_context.Objetivo, "IdObjetivo", "IdObjetivo", tareas.IdObjetivo);
             return View(tareas);
         }
