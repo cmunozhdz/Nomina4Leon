@@ -18,12 +18,13 @@
             </div>
             <div class="form-group">
                 <label asp-for="TareasDesc" class="control-label"></label>
-                <input asp-for="TareasDesc" class="form-control" />
-                <span asp-validation-for="TareasDesc" class="text-danger"></span>
+                <input asp-for="TareasDesc" class="form-control"  />
+                <span asp-validation-for="TareasDesc" class="text-danger" ></span>
             </div>
             <div class="form-group">
                 <label asp-for="TareasFechaRegistro" class="control-label"></label>
-                <input asp-for="TareasFechaRegistro" class="form-control" />
+                @Html.TextBoxFor(model => model.TareasFechaRegistro, new { @Value = @DateTime.Now })
+                
                 <span asp-validation-for="TareasFechaRegistro" class="text-danger"></span>
             </div>
             <div class="form-group">

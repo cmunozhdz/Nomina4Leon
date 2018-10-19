@@ -10,20 +10,16 @@ namespace ASPNETCORERoleManagement.Models
 {
     public class Tareas
     {
+        private DateTime FechaActual=DateTime.Now ;
+        
+
         [Key]
         [Display(Name = "Id Tarea")]
         [Required]
         [StringLength(10, MinimumLength = 1, ErrorMessage = "Formato inválido")]
         public string TareaId { get; set; }
 
-        [Display(Name = "Id Objetivo")]
-        [Required]
-        [StringLength(10, MinimumLength = 1, ErrorMessage = "Formato inválido")]
-        public string IdObjetivo { get; set; }
-
-        [ForeignKey("IdObjetivo")]
-        public Objetivo Objetivo { get; set; } 
-
+ 
         [Display(Name = "Descripción")]
         [Required]
         [MaxLength(2000)]
@@ -32,7 +28,25 @@ namespace ASPNETCORERoleManagement.Models
 
         //[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         [Display(Name = "Fecha Registro")]
-        public DateTime TareasFechaRegistro { get; set; }
+        
+
+
+        public DateTime TareasFechaRegistro {
+
+            get {
+                
+                return FechaActual;
+
+
+            }
+            set {
+                FechaActual = value;
+
+             
+                
+
+            }
+        }
 
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         [Display(Name = "Fecha Fin Deseado")]
@@ -44,6 +58,15 @@ namespace ASPNETCORERoleManagement.Models
         [DataType(DataType.Date)]
         public DateTime? TareasFechaFinReal { get; set; }
 
+
+        [Display(Name = "Id Objetivo")]
+        [Required]
+        [StringLength(10, MinimumLength = 1, ErrorMessage = "Formato inválido")]
+
+        public string IdObjetivo { get; set; }
+
+        [ForeignKey("IdObjetivo")]
+        public Objetivo Objetivo { get; set; }
 
     }
 }
