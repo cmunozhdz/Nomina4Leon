@@ -1,59 +1,113 @@
 ﻿@model IEnumerable<ASPNETCORERoleManagement.Models.Tareas>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Tareas";
 }
 
-<h2>Index</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.TareasDesc)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.TareasFechaRegistro)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.TareasFechaFinDeseado)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.TareasFechaFinReal)
-                </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Objetivo)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.TareasDesc)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TareasFechaRegistro)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TareasFechaFinDeseado)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TareasFechaFinReal)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Objetivo.IdObjetivo)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.TareaId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.TareaId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.TareaId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        @*<h4></h4>*@Tareas
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-lg-6">
+                Buscar
+                <form role="form">
+
+                   
+                        @using (Html.BeginForm())
+                        {
+                            <p>Id Objetivo:</p>
+                            
+                            <div class="form-group input-group">
+                                @Html.TextBox("ObjetivoId", null, new { @class = "form-control" })
+                                <span class="input-group-btn">
+                                    <input type="submit"    value="Buscar" class="btn btn-default" >
+
+                                    <i class="fa fa-search"> </i>
+                                   
+                                </span>
+                            </div>
+                                
+
+
+                                }
+
+                            
+</form>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="panel-body">
+            <p>
+                <a asp-action="Create">Nuevo</a>
+            </p>
+         </div>
+
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.TareaId)
+                            </th>
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.TareasDesc)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.TareasFechaRegistro)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.TareasFechaFinDeseado)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.TareasFechaFinReal)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Objetivo)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TareaId)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TareasDesc)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TareasFechaRegistro)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TareasFechaFinDeseado)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TareasFechaFinReal)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Objetivo.IdObjetivo)|
+                                    @Html.DisplayFor(modelItem => item.Objetivo.Descripcion)
+                                </td>
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@item.TareaId">Editar</a> |
+                                    <a asp-action="Details" asp-route-id="@item.TareaId">Detalles</a> |
+                                    <a asp-action="Delete" asp-route-id="@item.TareaId">Eliminar</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+

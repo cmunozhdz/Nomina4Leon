@@ -1,28 +1,20 @@
 ﻿@model ASPNETCORERoleManagement.Models.Tareas
 
-    @{
-        ViewData["Title"] = "Create";
-    }
+@{
+    ViewData["Title"] = "Create";
+}
 
-    <h2>Create</h2>
-
-    <h4>Tareas</h4>
+    <h2>Nueva</h2>
+ 
+    <h4>Tarea</h4>
     <hr />
     <div class="row">
-        <div class="col-md-4">
+        <div class=".col-xs-12 .col-sm-6 .col-md-8">
             <form asp-action="Create">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <ul>
 
-                    @if (ViewBag.Errors != null)
-                    {
-                        <p>@ViewBag.Errors</p>
-                    }
-                    }
-
-
-                </ul>
                 @Html.ValidationSummary(true, "Hay varios errores:")
+                @Html.ValidationMessage("ErrorEnDB")
                 <div class="form-group">
                     <label asp-for="TareaId" class="control-label"></label>
                     <input asp-for="TareaId" class="form-control" />
@@ -34,10 +26,12 @@
                     <select asp-for="IdObjetivo" class="form-control" asp-items="ViewBag.IdObjetivo"></select>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group" hidden="hidden" >
                     <label asp-for="TareasFechaRegistro" class="control-label"></label>
-                    @Html.TextBoxFor(model => model.TareasFechaRegistro, new { @Value = @DateTime.Now })
 
+                   @* @Html.TextBoxFor(model => model.TareasFechaRegistro, new { @class = "form-control", @readonly = true } )*@
+                    <input asp-for="TareasFechaRegistro" class="form-control" />
+                    @* @Html.EditorFor(model => model.TareasFechaRegistro )*@
                     <span asp-validation-for="TareasFechaRegistro" class="text-danger"></span>
                 </div>
 
@@ -60,14 +54,12 @@
 
                 </div>
                 <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-default" />
+
+                    <input type="submit" value="Guardar" class="btn btn-success" />
+                    <a asp-action="Index" class="btn btn-default">Volver la lista</a>
                 </div>
             </form>
         </div>
-    </div>
-
-    <div>
-        <a asp-action="Index">Back to List</a>
     </div>
 
     @section Scripts {

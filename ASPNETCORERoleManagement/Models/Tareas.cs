@@ -10,8 +10,29 @@ namespace ASPNETCORERoleManagement.Models
 {
     public class Tareas
     {
-        private DateTime FechaActual=DateTime.Now ;
-        
+
+        private DateTime FechaActual = DateTime.Now;
+        [Display(Name = "Fecha Registro")]
+        public DateTime TareasFechaRegistro
+        {
+
+            get
+            {
+
+                return FechaActual;
+
+
+            }
+            set
+            {
+                FechaActual = value;
+
+
+
+
+            }
+        }
+
 
         [Key]
         [Display(Name = "Id Tarea")]
@@ -27,26 +48,10 @@ namespace ASPNETCORERoleManagement.Models
         public string TareasDesc { get; set; }
 
         //[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
-        [Display(Name = "Fecha Registro")]
         
 
 
-        public DateTime TareasFechaRegistro {
-
-            get {
-                
-                return FechaActual;
-
-
-            }
-            set {
-                FechaActual = value;
-
-             
-                
-
-            }
-        }
+       
 
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         [Display(Name = "Fecha Fin Deseado")]

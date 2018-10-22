@@ -20,10 +20,21 @@ namespace ASPNETCORERoleManagement.Controllers
         }
 
         // GET: Tareas
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string ObjetivoId)
         {
-            var applicationDbContext = _context.Tareas.Include(t => t.Objetivo);
-            return View(await applicationDbContext.ToListAsync());
+            if (ObjetivoId==null )
+            {
+                var applicationDbContext = _context.Tareas.Include(t => t.Objetivo);
+                return View(await applicationDbContext.ToListAsync());
+            }
+            else
+            
+            {
+                var applicationDbContext = _context.Tareas.Include(t => t.Objetivo).Where(c=>c.IdObjetivo==ObjetivoId) ;
+                return View(await applicationDbContext.ToListAsync());
+            }
+
+
         }
 
         // GET: Tareas/Details/5
@@ -48,8 +59,12 @@ namespace ASPNETCORERoleManagement.Controllers
         // GET: Tareas/Create
         public IActionResult Create()
         {
-            ViewData["IdObjetivo"] = new SelectList(_context.Objetivo, "IdObjetivo", "IdObjetivo");
-            return View();
+            ViewBag.TareasFechaRegistro = DateTime.Now;
+          
+            ViewData["IdObjetivo"] = ListObjetivos("");
+
+            return View(new Models.Tareas());
+            
         }
 
         // POST: Tareas/Create
@@ -59,8 +74,18 @@ namespace ASPNETCORERoleManagement.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("TareaId,IdObjetivo,TareasDesc,TareasFechaRegistro,TareasFechaFinDeseado,TareasFechaFinReal")] Tareas tareas)
         {
+            if (ModelState.IsValid) {
+                //Valida que no haya datos duplicados.
+                if (TareasExists(tareas.TareaId )) {
+                    ModelState.AddModelError("ErrorEnDB", "El registro ya existe.");
+                    ViewBag.TareasFechaRegistro = DateTime.Now;
+
+                }
+            }
+
             if (ModelState.IsValid)
             {
+
                 _context.Add(tareas);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -68,17 +93,18 @@ namespace ASPNETCORERoleManagement.Controllers
             else {
                 ViewBag.Errors = "";
 
-                foreach (var modelError in ModelState)
-                {
-                    string propertyName = modelError.Key;
-                    if (modelError.Value.Errors.Count > 0)
-                    {
-                        ViewBag.Errors = ViewBag.Errors + "**** " + propertyName + "|" + modelError.Value.Errors.Count;
+                //foreach (var modelError in ModelState)
+                //{
+                //    string propertyName = modelError.Key;
+                //    if (modelError.Value.Errors.Count > 0)
+                //    {
+                //        ViewBag.Errors = ViewBag.Errors + "**** " + propertyName + "|" + modelError.Value.Errors.Count;
 
-                    }
-                }
+                //    }
+                //}
             }
-            ViewData["IdObjetivo"] = new SelectList(_context.Objetivo, "IdObjetivo", "IdObjetivo", tareas.IdObjetivo);
+            
+            ViewData["IdObjetivo"] = ListObjetivos(tareas.IdObjetivo);
             return View(tareas);
         }
 
@@ -95,7 +121,7 @@ namespace ASPNETCORERoleManagement.Controllers
             {
                 return NotFound();
             }
-            ViewData["IdObjetivo"] = new SelectList(_context.Objetivo, "IdObjetivo", "IdObjetivo", tareas.IdObjetivo);
+            ViewData["IdObjetivo"] = ListObjetivos(tareas.IdObjetivo);
             return View(tareas);
         }
 
@@ -131,7 +157,7 @@ namespace ASPNETCORERoleManagement.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdObjetivo"] = new SelectList(_context.Objetivo, "IdObjetivo", "IdObjetivo", tareas.IdObjetivo);
+            ViewData["IdObjetivo"] = ListObjetivos(tareas.IdObjetivo);
             return View(tareas);
         }
 
@@ -169,5 +195,20 @@ namespace ASPNETCORERoleManagement.Controllers
         {
             return _context.Tareas.Any(e => e.TareaId == id);
         }
+        private SelectList ListObjetivos(string _Selectitem ) {
+            //Devuelve la lista de objetivos
+            if (_Selectitem ==null)
+            {
+                return new SelectList(_context.Objetivo, "IdObjetivo", "Descripcion");
+            }
+            else
+            {
+                return new SelectList(_context.Objetivo, "IdObjetivo", "Descripcion", _Selectitem);
+            }
+            
+
+        }
+
+      
     }
 }
