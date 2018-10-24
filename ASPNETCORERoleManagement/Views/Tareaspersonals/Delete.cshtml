@@ -1,0 +1,46 @@
+﻿@model ASPNETCORERoleManagement.Models.Tareaspersonal
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Tareaspersonal</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Observaciones)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Observaciones)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FRegistro)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FRegistro)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PorcAvance)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PorcAvance)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Tareas)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Tareas.TareaId)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="TareaId" />
+        <input type="hidden" asp-for="PERNR" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

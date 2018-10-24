@@ -58,7 +58,7 @@ namespace ASPNETCORERoleManagement.Data
 
         public DbSet<Objetivo> Objetivo { get; set; }
         public DbSet<Tareas> Tareas { get; set; } 
-
+        public DbSet<Tareaspersonal> Tareaspersonal { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -70,8 +70,8 @@ namespace ASPNETCORERoleManagement.Data
                 .HasIndex(post => new { post.Gbukrs, post.Bukrs, post.Massg, post.Massn }).IsUnique();
 
             builder.Entity<Competencias>().HasKey(c => new { c.Id_Competencia,c.gbukrs ,c.bukrs });
+            builder.Entity<Tareaspersonal>().HasKey(c => new { c.TareaId , c.PERNR });
 
-                
 
 
         }

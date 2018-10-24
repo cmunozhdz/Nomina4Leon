@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ASPNETCORERoleManagement.Data;
 using ASPNETCORERoleManagement.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ASPNETCORERoleManagement.Controllers
 {
+    [Authorize(Roles = "Admin")] //Fija los permisos.
     public class TareasController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -24,13 +26,17 @@ namespace ASPNETCORERoleManagement.Controllers
         {
             if (ObjetivoId==null )
             {
-                var applicationDbContext = _context.Tareas.Include(t => t.Objetivo);
+              
+                var applicationDbContext = _context.Tareas.Include(t => t.Objetivo).ThenInclude(tp => tp.TipoObj);
+                
                 return View(await applicationDbContext.ToListAsync());
             }
             else
             
             {
-                var applicationDbContext = _context.Tareas.Include(t => t.Objetivo).Where(c=>c.IdObjetivo==ObjetivoId) ;
+                var applicationDbContext = _context.Tareas.Include(t => t.Objetivo)
+                    .ThenInclude(tp=>tp.TipoObj) 
+                    .Where(c=>c.IdObjetivo==ObjetivoId)  ;
                 return View(await applicationDbContext.ToListAsync());
             }
 
@@ -47,6 +53,7 @@ namespace ASPNETCORERoleManagement.Controllers
 
             var tareas = await _context.Tareas
                 .Include(t => t.Objetivo)
+                .ThenInclude (tp=>tp.TipoObj)
                 .SingleOrDefaultAsync(m => m.TareaId == id);
             if (tareas == null)
             {
@@ -116,7 +123,11 @@ namespace ASPNETCORERoleManagement.Controllers
                 return NotFound();
             }
 
-            var tareas = await _context.Tareas.SingleOrDefaultAsync(m => m.TareaId == id);
+            var tareas = await _context.Tareas.Include(t=>t.Objetivo)
+                .ThenInclude(tp=>tp.TipoObj)
+                .SingleOrDefaultAsync(m => m.TareaId == id);
+
+            //var applicationDbContext = _context.Tareas.Include(t => t.Objetivo).ThenInclude(tp => tp.TipoObj);
             if (tareas == null)
             {
                 return NotFound();
@@ -171,6 +182,7 @@ namespace ASPNETCORERoleManagement.Controllers
 
             var tareas = await _context.Tareas
                 .Include(t => t.Objetivo)
+                .ThenInclude(tp=>tp.TipoObj) 
                 .SingleOrDefaultAsync(m => m.TareaId == id);
             if (tareas == null)
             {

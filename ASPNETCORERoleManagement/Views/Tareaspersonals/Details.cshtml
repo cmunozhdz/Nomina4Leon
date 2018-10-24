@@ -1,0 +1,42 @@
+﻿@model ASPNETCORERoleManagement.Models.Tareaspersonal
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Tareaspersonal</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Observaciones)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Observaciones)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FRegistro)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FRegistro)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PorcAvance)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PorcAvance)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Tareas)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Tareas.TareaId)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>

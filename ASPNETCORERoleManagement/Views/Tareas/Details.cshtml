@@ -3,46 +3,65 @@
 @{
     ViewData["Title"] = "Details";
 }
+<ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a href="#">Tareas</a></li>
+    <li role="presentation" class="" ><a asp-controller="Objetivos" asp-action="Index" asp-route-TipoObjId="@ViewBag.TipoObjID">Objetivos</a></li>
 
-<h2>Details</h2>
+</ul>
+<h4>&nbsp;</h4>
 
-<div>
-    <h4>Tareas</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.TareasDesc)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.TareasDesc)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.TareasFechaRegistro)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.TareasFechaRegistro)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.TareasFechaFinDeseado)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.TareasFechaFinDeseado)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.TareasFechaFinReal)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.TareasFechaFinReal)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Objetivo)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Objetivo.IdObjetivo)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.TareaId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+<div class="panel panel-default">
+    @*<div class="panel-heading">
+
+        <h4>Tarea (Detalles)</h4>
+    </div>*@
+
+    <div class="panel-body">
+       
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.TareasDesc)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.TareasDesc)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.TareasFechaRegistro)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.TareasFechaRegistro)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.TareasFechaFinDeseado)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.TareasFechaFinDeseado)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.TareasFechaFinReal)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.TareasFechaFinReal)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Objetivo)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Objetivo.IdObjetivo)
+                @Html.DisplayFor(model => model.Objetivo.Descripcion)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Objetivo.TipoObj )
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Objetivo.TipoObj.TipoObjId )
+                @Html.DisplayFor(model => model.Objetivo.TipoObj.Descripcion)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.TareaId" class="btn btn-success ">Editar</a> |
+        <a asp-action="Index" class="btn btn-default">Regresar a la lista</a>
+        <a asp-action="Delete" class="btn btn-danger ">Elminar</a>
+    </div>
+ </div>

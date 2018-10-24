@@ -40,6 +40,14 @@
         <dd>
             @Html.DisplayFor(model => model.Objetivo.IdObjetivo)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Objetivo.TipoObj)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Objetivo.TipoObj.Descripcion)
+
+        </dd>
+
     </dl>
 
     <form asp-action="Delete">

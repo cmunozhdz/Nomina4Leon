@@ -3,63 +3,69 @@
 @{
     ViewData["Title"] = "Create";
 }
+<div class="panel panel-default">
+    <div class="panel-heading">
 
-    <h2>Nueva</h2>
- 
-    <h4>Tarea</h4>
-    <hr />
-    <div class="row">
-        <div class=".col-xs-12 .col-sm-6 .col-md-8">
-            <form asp-action="Create">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <h4>Crear Tareas</h4>
+    </div>
+        <div class="panel-body">
 
-                @Html.ValidationSummary(true, "Hay varios errores:")
-                @Html.ValidationMessage("ErrorEnDB")
-                <div class="form-group">
-                    <label asp-for="TareaId" class="control-label"></label>
-                    <input asp-for="TareaId" class="form-control" />
-                    <span asp-validation-for="TareaId" class="text-danger"></span>
+
+            <div class="row">
+                <div class=".col-xs-12 .col-sm-6 .col-md-8">
+                    <form asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        @Html.ValidationSummary(true, "Hay varios errores:")
+                        @Html.ValidationMessage("ErrorEnDB")
+                        <div class="form-group">
+                            <label asp-for="TareaId" class="control-label"></label>
+                            <input asp-for="TareaId" class="form-control" />
+                            <span asp-validation-for="TareaId" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="IdObjetivo" class="control-label"></label>
+                            <select asp-for="IdObjetivo" class="form-control" asp-items="ViewBag.IdObjetivo"></select>
+                        </div>
+
+                        <div class="form-group" hidden="hidden">
+                            <label asp-for="TareasFechaRegistro" class="control-label"></label>
+
+                            @* @Html.TextBoxFor(model => model.TareasFechaRegistro, new { @class = "form-control", @readonly = true } )*@
+                            <input asp-for="TareasFechaRegistro" class="form-control" />
+                            @* @Html.EditorFor(model => model.TareasFechaRegistro )*@
+                            <span asp-validation-for="TareasFechaRegistro" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="TareasFechaFinDeseado" class="control-label"></label>
+                            <input asp-for="TareasFechaFinDeseado" class="form-control" />
+                            <span asp-validation-for="TareasFechaFinDeseado" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="TareasFechaFinReal" class="control-label"></label>
+                            <input asp-for="TareasFechaFinReal" class="form-control" />
+                            <span asp-validation-for="TareasFechaFinReal" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="TareasDesc" class="control-label"></label>
+
+                            @Html.TextArea("TareasDesc", null, new { @class = "form-control" })
+                            <span asp-validation-for="TareasDesc" class="text-danger"></span>
+
+
+                        </div>
+                        <div class="form-group">
+
+                            <input type="submit" value="Guardar" class="btn btn-success" />
+                            <a asp-action="Index" class="btn btn-default">Volver la lista</a>
+                        </div>
+                    </form>
                 </div>
-
-                <div class="form-group">
-                    <label asp-for="IdObjetivo" class="control-label"></label>
-                    <select asp-for="IdObjetivo" class="form-control" asp-items="ViewBag.IdObjetivo"></select>
-                </div>
-
-                <div class="form-group" hidden="hidden" >
-                    <label asp-for="TareasFechaRegistro" class="control-label"></label>
-
-                   @* @Html.TextBoxFor(model => model.TareasFechaRegistro, new { @class = "form-control", @readonly = true } )*@
-                    <input asp-for="TareasFechaRegistro" class="form-control" />
-                    @* @Html.EditorFor(model => model.TareasFechaRegistro )*@
-                    <span asp-validation-for="TareasFechaRegistro" class="text-danger"></span>
-                </div>
-
-                <div class="form-group">
-                    <label asp-for="TareasFechaFinDeseado" class="control-label"></label>
-                    <input asp-for="TareasFechaFinDeseado" class="form-control" />
-                    <span asp-validation-for="TareasFechaFinDeseado" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="TareasFechaFinReal" class="control-label"></label>
-                    <input asp-for="TareasFechaFinReal" class="form-control" />
-                    <span asp-validation-for="TareasFechaFinReal" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="TareasDesc" class="control-label"></label>
-
-                    @Html.TextArea("TareasDesc", null, new { @class = "form-control" })
-                    <span asp-validation-for="TareasDesc" class="text-danger"></span>
-
-
-                </div>
-                <div class="form-group">
-
-                    <input type="submit" value="Guardar" class="btn btn-success" />
-                    <a asp-action="Index" class="btn btn-default">Volver la lista</a>
-                </div>
-            </form>
+            </div>
         </div>
+
     </div>
 
     @section Scripts {

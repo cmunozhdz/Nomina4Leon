@@ -1,0 +1,61 @@
+﻿@model IEnumerable<ASPNETCORERoleManagement.Models.Tareaspersonal>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.PERNR)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Observaciones)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FRegistro)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PorcAvance)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Tareas)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PERNR )
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Observaciones)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FRegistro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PorcAvance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tareas.TareaId)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.TareaId, PERNR = item.PERNR  /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { id = item.TareaId, PERNR = item.PERNR/* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.TareaId, PERNR = item.PERNR /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

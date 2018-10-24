@@ -71,39 +71,47 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.Objetivo)
                             </th>
+                            <td>
+                                @Html.DisplayNameFor(model => model.Objetivo.TipoObj )
+                            </td>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.TareaId)
-                                </td>
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TareaId)
+                            </td>
 
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.TareasDesc)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.TareasFechaRegistro)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.TareasFechaFinDeseado)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.TareasFechaFinReal)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Objetivo.IdObjetivo)|
-                                    @Html.DisplayFor(modelItem => item.Objetivo.Descripcion)
-                                </td>
-                                <td>
-                                    <a asp-action="Edit" asp-route-id="@item.TareaId">Editar</a> |
-                                    <a asp-action="Details" asp-route-id="@item.TareaId">Detalles</a> |
-                                    <a asp-action="Delete" asp-route-id="@item.TareaId">Eliminar</a>
-                                </td>
-                            </tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TareasDesc)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TareasFechaRegistro)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TareasFechaFinDeseado)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TareasFechaFinReal)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Objetivo.IdObjetivo)|
+                                @Html.DisplayFor(modelItem => item.Objetivo.Descripcion)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Objetivo.TipoObj.TipoObjId )|
+                                @Html.DisplayFor(modelItem => item.Objetivo.TipoObj.Descripcion )
+                            </td>
+
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.TareaId">Editar</a> |
+                                <a asp-action="Details" asp-route-id="@item.TareaId">Detalles</a> |
+                                <a asp-action="Delete" asp-route-id="@item.TareaId">Eliminar</a>
+                            </td>
+                        </tr>
                         }
                     </tbody>
                 </table>
