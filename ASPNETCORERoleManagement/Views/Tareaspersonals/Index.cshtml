@@ -23,6 +23,8 @@
                     @Html.DisplayNameFor(model => model.FRegistro)
                 </th>
                 <th>
+
+
                     @Html.DisplayNameFor(model => model.PorcAvance)
                 </th>
                 <th>
@@ -45,7 +47,15 @@
                 @Html.DisplayFor(modelItem => item.FRegistro)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PorcAvance)
+                <div class="progress">
+                    <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow=" @Html.DisplayFor(modelItem => item.PorcAvance) " aria-valuemin="0" aria-valuemax="100" style="width:@Html.DisplayFor(modelItem => item.PorcAvance)%">
+                        @Html.DisplayFor(modelItem => item.PorcAvance)
+                    </div>
+
+                    
+                </div>
+
+                
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Tareas.TareaId)

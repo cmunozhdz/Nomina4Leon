@@ -30,8 +30,9 @@ namespace ASPNETCORERoleManagement.Controllers
 
             if (TipoObjId == null && id == null )
             {
-                var applicationDbContext = _context.Objetivo.Include(o => o.TipoObj);
-                return View(await applicationDbContext.ToListAsync());
+                //Obliga a que se defina el tipo de objetivo antes de mostrar la lista
+                    return RedirectToAction("Index", "TipoObjs");
+                
 
             }
             else if (TipoObjId == null && id != null) {
@@ -80,9 +81,16 @@ namespace ASPNETCORERoleManagement.Controllers
         public IActionResult Create(string id)
         {
             //ViewData["TipoObjId"] = new SelectList(_context.TipoObj, "TipoObjId", "TipoObjId");
+            //Primero debe seleccionarse un tipo de objetivo
+            if (id ==null)
+            {
+                return RedirectToAction("Index", "TipoObj");
+
+            }
             ViewBag.TipoObjId = id;
             
             return View();
+
         }
 
         // POST: Objetivos/Create

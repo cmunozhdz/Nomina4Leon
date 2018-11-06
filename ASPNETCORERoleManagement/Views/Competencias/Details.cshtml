@@ -47,7 +47,7 @@
     <nav class="navbar navbar-light bg-light">
 
         @Html.ActionLink("Editar", "Edit", new { id = Model.Id_Competencia, gbukrs = Model.gbukrs, Bukrs = Model.bukrs }, new { @class = "btn btn-success" })
-        @Html.ActionLink("Editar", "Delete", new { id = Model.Id_Competencia, gbukrs = Model.gbukrs, Bukrs = Model.bukrs }, new { @class = "btn btn-danger" })
+        @Html.ActionLink("Eliminar", "Delete", new { id = Model.Id_Competencia, gbukrs = Model.gbukrs, Bukrs = Model.bukrs }, new { @class = "btn btn-danger" })
 
         <a asp-action="Index" class="btn btn-default ">Regresar</a>
 

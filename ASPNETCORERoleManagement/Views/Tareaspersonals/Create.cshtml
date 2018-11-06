@@ -4,7 +4,7 @@
     ViewData["Title"] = "Create";
 }
 
-<h2>Create</h2>
+<h2>Nuevo</h2>
 
 <h4>Tareaspersonal</h4>
 <hr />
@@ -14,7 +14,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="TareaId" class="control-label"></label>
-                <select asp-for="TareaId" class ="form-control" asp-items="ViewBag.TareaId"></select>
+                <select asp-for="TareaId" class="form-control" asp-items="ViewBag.TareaId"></select>
             </div>
             <div class="form-group">
                 <label asp-for="PERNR" class="control-label"></label>
@@ -28,7 +28,16 @@
             </div>
             <div class="form-group">
                 <label asp-for="FRegistro" class="control-label"></label>
-                <input asp-for="FRegistro" class="form-control" />
+
+                <div class="input-group">
+                    @Html.TextBoxFor(m => m.FRegistro, "{0:dd/MM/yyyy}", new { maxlength = "12", @class = "date-picker form-control auto-focus" })
+                    <label for="@Html.IdFor(m => m.FRegistro )" class="input-group-addon btn">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </label>
+
+                </div>
+
+
                 <span asp-validation-for="FRegistro" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -37,13 +46,30 @@
                 <span asp-validation-for="PorcAvance" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Create" class="btn  btn-success " />
+                <a asp-action="Index" class="btn btn-default ">Regresar a la lista</a>
             </div>
         </form>
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
+<link href="~/jquery-ui-1.12.1.custom/jquery-ui.css" rel="stylesheet" />
+
+@section Scripts {
+    
+    <script src="~/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+    <script>
+
+        $(function () {
+            $(".date-picker").datepicker({
+                dateFormat: "dd/mm/yy",
+                changeMonth: true,
+                changeYear: true
+
+            });
+        });
+
+    </script>
+
+}
