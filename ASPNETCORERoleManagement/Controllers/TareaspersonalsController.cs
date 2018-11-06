@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ASPNETCORERoleManagement.Data;
 using ASPNETCORERoleManagement.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ASPNETCORERoleManagement.Controllers
 {
+    [Authorize(Roles = "Admin")] //Fija los permisos.
     public class TareaspersonalsController : Controller
     {
         private readonly ApplicationDbContext _context;

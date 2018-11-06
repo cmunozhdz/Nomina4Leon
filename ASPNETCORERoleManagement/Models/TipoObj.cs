@@ -20,7 +20,7 @@ namespace ASPNETCORERoleManagement.Models
         [StringLength(10, MinimumLength = 1, ErrorMessage = "Formato inválido")]
         public string TipoObjId { get; set; }
 
-        
+        [Required]
         [StringLength(4, MinimumLength = 1, ErrorMessage = "Teclee el Grupo de Compañía")]
         [Display(Name = "Grupo Compañia")]
         public string gbukrs { get; set; }
@@ -37,7 +37,8 @@ namespace ASPNETCORERoleManagement.Models
         
         [Required]
         [Display(Name = "Descripción")]
-        [StringLength(100, MinimumLength = 1, ErrorMessage = "Descripción, es obligatorio")]
+        [StringLength( 200, MinimumLength = 1, ErrorMessage = "Descripción, es obligatorio")]
+        
         public string Descripcion { get; set; }
 
     }

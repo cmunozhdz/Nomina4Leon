@@ -29,7 +29,9 @@ namespace ASPNETCORERoleManagement.Controllers
         }
 
         // GET: TipoObjs
-        public async Task<IActionResult> Index()
+        
+
+        public async Task<IActionResult> Index(string SociedadPar, string DescripcionPar)
         {
             ViewBag.GpoCiaG = HttpContext.Session.GetString(SessionGpoCia);
 
@@ -42,11 +44,44 @@ namespace ASPNETCORERoleManagement.Controllers
             }
             else
             {
-                //Muestra las competencias de la sociedad actual.
-                var x = HttpContext.Session.GetString(SessionGpoCia);
-                // GpoCiaCtrl = HttpContext.Session.GetString(SessionGpoCia);
+                if (SociedadPar== null &&  DescripcionPar==null)
+                {
+                    //Muestra las competencias de la sociedad actual.
+                    var x = HttpContext.Session.GetString(SessionGpoCia);
+                    // GpoCiaCtrl = HttpContext.Session.GetString(SessionGpoCia);
 
-                return View(await _context.TipoObj.Where(c => c.gbukrs == x).ToListAsync());
+                    return View(await _context.TipoObj.Where(c => c.gbukrs == x).ToListAsync());
+
+                }
+
+                else if (SociedadPar == null && DescripcionPar != null)
+                {
+                    //Muestra las competencias de la sociedad actual.
+                    var x = HttpContext.Session.GetString(SessionGpoCia);
+                    // GpoCiaCtrl = HttpContext.Session.GetString(SessionGpoCia);
+
+                    return View(await _context.TipoObj.Where(c => c.gbukrs == x && c.Descripcion.Contains (DescripcionPar)  ).ToListAsync());
+
+                }
+                else if (SociedadPar != null && DescripcionPar == null)
+                {
+                    //Muestra las competencias de la sociedad actual.
+                    var x = HttpContext.Session.GetString(SessionGpoCia);
+                    // GpoCiaCtrl = HttpContext.Session.GetString(SessionGpoCia);
+
+                    return View(await _context.TipoObj.Where(c => c.gbukrs == x && c.bukrs==SociedadPar  ).ToListAsync());
+
+                }
+
+                else 
+                {
+                    //Muestra las competencias de la sociedad actual.
+                    var x = HttpContext.Session.GetString(SessionGpoCia);
+                    // GpoCiaCtrl = HttpContext.Session.GetString(SessionGpoCia);
+
+                    return View(await _context.TipoObj.Where(c => c.gbukrs == x && c.bukrs ==SociedadPar && c.Descripcion.Contains( DescripcionPar)  ).ToListAsync());
+
+                }
 
             }
 

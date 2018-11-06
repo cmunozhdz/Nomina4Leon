@@ -18,18 +18,19 @@ namespace ASPNETCORERoleManagement.Models
 
         [Display(Name = "Descripción")]
         [Required]
-        [StringLength(100, MinimumLength = 1, ErrorMessage = "Formato inválido")]
+        
+        [StringLength(1000, MinimumLength = 1, ErrorMessage = "Formato inválido")]
         public string Descripcion { get; set; }
 
 
         [Display(Name = "Inicio")]
         [Required]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
         public DateTime? Inicio { get; set; }
 
 
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}" ,ApplyFormatInEditMode =true    )]
         [Display(Name = "Fin")]
         [DataType(DataType.Date)]
 

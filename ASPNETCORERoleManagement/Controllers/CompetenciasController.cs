@@ -52,6 +52,7 @@ namespace ASPNETCORERoleManagement.Controllers
         public async Task<IActionResult> Index()
         {
             
+
             ViewBag.GpoCiaG = HttpContext.Session.GetString(SessionGpoCia);
             
             if (ViewBag.GpoCiaG == null || ViewBag.GpoCiaG == "")
@@ -125,8 +126,12 @@ namespace ASPNETCORERoleManagement.Controllers
         public async Task<IActionResult> Create([Bind("Id_Competencia,gbukrs,bukrs,Competencias_Desc,Generico")] Competencias competencias)
         {
             //Verifica que no haya registros duplicados.
+            
+
+
             if (_context.Competencias.Any(a=>a.Id_Competencia==competencias.Id_Competencia  && a.gbukrs == competencias.gbukrs && a.bukrs ==competencias.bukrs ))
             {
+                
                 ModelState.AddModelError("Id_Competencia", "El registro ya existe");
                 ViewBag.GpoCiaG = HttpContext.Session.GetString(SessionGpoCia);
                 if (ViewBag.GpoCiaG == null)

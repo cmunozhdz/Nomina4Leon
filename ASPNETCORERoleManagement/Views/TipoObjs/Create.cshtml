@@ -18,14 +18,6 @@
                 <input asp-for="gbukrs" class="form-control" value="@ViewBag.GpoCiaG" readonly="readonly" />
                 <span asp-validation-for="gbukrs" class="text-danger"></span>
             </div>
-
-            <div class="form-group">
-                <label asp-for="TipoObjId" class="control-label"></label>
-                <input asp-for="TipoObjId" class="form-control focus active " />
-                <span asp-validation-for="TipoObjId" class="text-danger"></span>
-            </div>
-
-
             <div class="form-group">
                 <label asp-for="bukrs" class="control-label"></label>
 
@@ -34,8 +26,21 @@
             </div>
 
             <div class="form-group">
+                <label asp-for="TipoObjId" class="control-label"></label>
+                <input asp-for="TipoObjId" class="form-control focus active " />
+                <span asp-validation-for="TipoObjId" class="text-danger"></span>
+            </div>
+
+
+
+
+            <div class="form-group">
                 <label asp-for="Descripcion" class="control-label"></label>
-                <input asp-for="Descripcion" class="form-control" />
+                
+                @Html.TextAreaFor(Model=>Model.Descripcion, new { @class = "form-control" })
+
+                
+
                 <span asp-validation-for="Descripcion" class="text-danger"></span>
             </div>
 

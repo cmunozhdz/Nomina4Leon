@@ -3,6 +3,13 @@
 @{
     ViewData["Title"] = "Edit";
 }
+<script>
+    $(function () {
+        $("#Inicio").datepicker();
+    });
+
+</script>
+
 <ul class="nav nav-tabs">
 
     <li role="presentation">
@@ -25,34 +32,51 @@
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            
-            <div class="form-group">
-                <label asp-for="IdObjetivo" class="control-label"></label>
-                <input asp-for="IdObjetivo" class="form-control" readonly="readonly"  />
-                <span asp-validation-for="IdObjetivo" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="Descripcion" class="control-label"></label>
-                <input asp-for="Descripcion" class="form-control" />
-                <span asp-validation-for="Descripcion" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Inicio" class="control-label"></label>
-                <input asp-for="Inicio" class="form-control" />
-                <span asp-validation-for="Inicio" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Fin" class="control-label"></label>
-                <input asp-for="Fin" class="form-control" />
-                <span asp-validation-for="Fin" class="text-danger"></span>
-            </div>
             <div class="form-group">
                 <label asp-for="TipoObjId" class="control-label"></label>
 
                 <input asp-for="TipoObjId" class="form-control" value="@ViewBag.TipoObjId" readonly="readonly" />
                 <span asp-validation-for="TipoObjId" class="text-danger"></span>
             </div>
+
+            <div class="form-group">
+                <label asp-for="IdObjetivo" class="control-label"></label>
+                <input asp-for="IdObjetivo" class="form-control" readonly="readonly" />
+                <span asp-validation-for="IdObjetivo" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="Inicio" class="control-label"></label>
+
+                <div class="input-group">
+                    @Html.TextBoxFor(m => m.Inicio, "{0:dd/MM/yyyy}", new { maxlength = "12", @class = "date-picker form-control auto-focus" })
+                    <label for="@Html.IdFor(m => m.Inicio)" class="input-group-addon btn"  >
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </label>
+
+                </div>
+
+
+            </div>
+            <div class="form-group">
+                <label asp-for="Fin" class="control-label"></label>
+                <div class="input-group">
+                    @Html.TextBoxFor(m => m.Fin, "{0:dd/MM/yyyy}", new { maxlength = "12", @class = "date-picker form-control auto-focus" })
+                    <label for="@Html.IdFor(m => m.Fin)" class="input-group-addon btn">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </label>
+                </div>
+
+                    <span asp-validation-for="Fin" class="text-danger"></span>
+                </div>
+            <div class="form-group">
+                <label asp-for="Descripcion" class="control-label"></label>
+                @Html.TextAreaFor(m => m.Descripcion, new { @class = "form-control", @placeholder = "Ingrese sus objetivos." })
+               
+                <span asp-validation-for="Descripcion" class="text-danger"></span>
+            </div>
+
 
             <div class="form-group">
                 <nav class="navbar navbar-light bg-light">
@@ -66,7 +90,22 @@
 </div>
 
 
-
+<link href="~/jquery-ui-1.12.1.custom/jquery-ui.css"  rel="stylesheet" />
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+    <script >
+       
+        $(function () {
+            $(".date-picker").datepicker({
+                dateFormat: "dd/mm/yy",
+                changeMonth: true,
+                changeYear: true
+                
+            });
+        });
+       
+    </script>
+    
+
 }
